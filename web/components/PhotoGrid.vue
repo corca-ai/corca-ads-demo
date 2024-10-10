@@ -1,8 +1,7 @@
 <script setup>
-import { ref, watch, useTemplateRef } from "vue";
+import { ref, useTemplateRef, defineProps } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
 import PhotoCard from "~/components/PhotoCard.vue";
-import { defineProps } from "vue";
 
 const INTERSECTION_THRESHOLD = 0.5;
 const INTERSECTION_TIMER = 1000;
