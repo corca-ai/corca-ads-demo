@@ -10,8 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.13.0",
+    "nuxt": "3.13.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "@vueuse/core": "11.1.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "3.7.3",
+    "@nuxtjs/tailwindcss": "6.12.1",
+    "prettier": "3.3.3"
   }
 }
