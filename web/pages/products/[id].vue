@@ -50,18 +50,29 @@ const handlePurchase = async (photoId) => {
       />
       <div class="text-xl font-semibold mb-4">{{ photo.title }}</div>
       <div class="flex gap-4">
-        <button
-          @click="handleAddToCart(photo.id)"
-          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+        <NuxtLink
+          :to="{ path: '/cart', query: { productId: photo.id, quantity: 1 } }"
         >
-          장바구니
-        </button>
-        <button
-          @click="handlePurchase(photo.id)"
-          class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+          <button
+            @click="handleAddToCart(photo.id)"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+          >
+            장바구니
+          </button>
+        </NuxtLink>
+        <NuxtLink
+          :to="{
+            path: '/purchase',
+            query: { productId: photo.id, quantity: 1 },
+          }"
         >
-          구매
-        </button>
+          <button
+            @click="handlePurchase(photo.id)"
+            class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+          >
+            구매
+          </button>
+        </NuxtLink>
       </div>
     </div>
   </div>
