@@ -5,7 +5,15 @@
 web/node_modules/
 web/.nuxt/
 web/dist/
+web/.cache
+web/.output
+web/.data
+web/.nitro
 
+# Local env files
+.env
+.env.*
+!.env.example
 
 # IDEs and editors
 .idea/
@@ -13,7 +21,6 @@ web/dist/
 *.iws
 *.iml
 *.ipr
-
 
 # OS generated files
 .DS_Store
