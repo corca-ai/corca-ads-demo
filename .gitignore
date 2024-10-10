@@ -1,0 +1,19 @@
+# Spring Boot
+
+
+# Nuxt.js
+web/node_modules/
+web/.nuxt/
+web/dist/
+
+
+# IDEs and editors
+.idea/
+.vscode/
+*.iws
+*.iml
+*.ipr
+
+
+# OS generated files
+.DS_Store
