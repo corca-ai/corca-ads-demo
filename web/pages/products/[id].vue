@@ -1,5 +1,7 @@
 <script setup>
 import { useNuxtApp, callWithNuxt } from "#app";
+import { definePageMeta } from "vue";
+import { useFetchWithBaseUrl } from "~/composables/useFetchWithBaseUrl";
 
 // Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({

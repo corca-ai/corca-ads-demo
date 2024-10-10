@@ -1,18 +1,3 @@
-<script setup>
-import { defineProps } from "vue";
-
-const props = defineProps({
-  productId: {
-    type: String,
-    required: true,
-  },
-  quantity: {
-    type: Number,
-    required: true,
-  },
-});
-</script>
-
 <template>
   <div
     class="w-full h-screen flex flex-col items-center justify-center bg-gray-50 p-4"
