@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>
     <div class="w-full bg-white p-3 shadow-lg relative">

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      baseURL: "https://jsonplaceholder.typicode.com/",
+      storeId: "7a5c6244-fb4b-4962-87d0-47e63bfee377", // TODO: 보리보리 계정 id 생기면 그걸로 변경
     },
   },
   modules: ["@nuxtjs/tailwindcss"],
