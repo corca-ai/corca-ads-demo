@@ -18,15 +18,14 @@ export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
     ...opts,
     baseURL: "https://receiver.adcio.ai/events/",
     method: "post",
-    ...{
-      body: {
-        storeId,
-        deviceId,
-        sessionId,
-        ...(typeof opts?.body === "object" && opts.body !== null
-          ? opts.body
-          : {}),
-      },
+    server: false,
+    body: {
+      storeId,
+      deviceId,
+      sessionId,
+      ...(typeof opts?.body === "object" && opts.body !== null
+        ? opts.body
+        : {}),
     },
   });
 };

@@ -19,7 +19,6 @@ const impressionIds = ref(new Set());
 // 노출 API를 호출하는 함수
 const handleImpression = async (id) => {
   await useAdsEventLogger("impression", {
-    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",

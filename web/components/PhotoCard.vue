@@ -6,7 +6,6 @@ defineProps(["photo", "isLoaded"]);
 const handleClick = async () => {
   // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("click", {
-    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",

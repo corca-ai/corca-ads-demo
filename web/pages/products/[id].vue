@@ -24,9 +24,15 @@ const photo = ref(nuxtApp.$requestData);
 
 // 페이지가 마운트되면 PageView 이벤트 API를 호출합니다.
 onMounted(async () => {
+  /**
+   * @description
+   * onMounted 후 API 요청 시 API 호출이 안 되는 이슈가 있어, nextTick을 이용해 다음 이벤트 루프 때 실행되게끔 구현했습니다.
+   * 참고: https://stackoverflow.com/questions/76527094/nuxt-3-and-vue-3-onmounted-call-function-usefetch-function-not-getting-data-form
+   */
+  await nextTick();
+
   // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("view", {
-    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
@@ -41,7 +47,6 @@ onMounted(async () => {
 // 장바구니 버튼을 클릭하면 장바구니 API를 호출합니다.
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
-    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
@@ -58,7 +63,6 @@ const handleAddToCart = async (quantity) => {
 // 구매 버튼을 클릭하면 구매 API를 호출합니다.
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
-    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
