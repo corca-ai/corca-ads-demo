@@ -5,7 +5,7 @@ export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;
 
-  if (process.server) {
+  if (import.meta.server) {
     throw new Error(
       "deviceId와 sessionId가 스토리지에 저장되어 있기에, SSR일 때는 사용할 수 없습니다."
     );
