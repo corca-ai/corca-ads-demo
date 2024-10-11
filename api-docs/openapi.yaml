@@ -1,0 +1,168 @@
+{
+  "openapi": "3.0.1",
+  "info":
+    {
+      "title": "Corca Ads Demo Server",
+      "description": "API for Demo Server using Corca Ads",
+      "version": "1.0",
+    },
+  "servers":
+    [{ "url": "http://localhost:8080", "description": "Generated server url" }],
+  "tags":
+    [
+      {
+        "name": "Corca Ads",
+        "description": "API used to fetch products from Corca Ads",
+      },
+    ],
+  "paths":
+    {
+      "/api/corca-ads/products":
+        {
+          "get":
+            {
+              "tags": ["Corca Ads"],
+              "summary": "Fetch products from Corca Ads",
+              "description": "Returns retrieved advertisement products based on the parameters provided.",
+              "operationId": "getCorcaAdsProducts",
+              "parameters":
+                [
+                  {
+                    "name": "params",
+                    "in": "query",
+                    "description": "Corca Ads request parameters",
+                    "required": true,
+                    "schema":
+                      { "$ref": "#/components/schemas/CorcaAdsRequestDTO" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CorcaAdsProductResponseDTO",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+  "components":
+    {
+      "schemas":
+        {
+          "CorcaAdsRequestDTO":
+            {
+              "required": ["clientId", "deviceId", "placementId", "sessionId"],
+              "type": "object",
+              "properties":
+                {
+                  "clientId":
+                    {
+                      "type": "string",
+                      "description": "Corca Ads 서비스의 클라이언트 ID",
+                    },
+                  "placementId":
+                    {
+                      "type": "string",
+                      "description": "Corca Ads 서비스에서 발급받은 광고가 나갈 지면(구좌) ID",
+                    },
+                  "sessionId":
+                    {
+                      "type": "string",
+                      "description": "엔드유저가 스토어를 방문하고 있는 동안 유지되는 세션의 고유 식별자",
+                    },
+                  "deviceId":
+                    {
+                      "type": "string",
+                      "description": "엔드 유저의 디바이스 고유 식별자",
+                    },
+                  "customerId":
+                    {
+                      "type": "string",
+                      "description": "스토어에 로그인한 엔드유저를 식별하기 위한 값, 로그인 하지 않은 유저는 null로 설정",
+                    },
+                  "userAgent":
+                    {
+                      "type": "string",
+                      "description": "엔드유저의 User-Agent 정보",
+                    },
+                },
+              "description": "Request DTO for Corca Ads API",
+            },
+          "CorcaAdsProductResponseDTO":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "suggestions":
+                    {
+                      "type": "array",
+                      "description": "광고 제안 목록",
+                      "items": { "$ref": "#/components/schemas/SuggestionDTO" },
+                    },
+                  "placement": { "$ref": "#/components/schemas/PlacementDTO" },
+                },
+              "description": "Response DTO for Corca Ads Product API",
+            },
+          "LogOptionsDTO":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "requestId": { "type": "string" },
+                  "adsetId": { "type": "string" },
+                },
+              "description": "광고 제안에 대한 성과 추적을 위한 값, 엔드유저 이벤트에 대해 로그 수집 시 사용",
+            },
+          "PlacementDTO":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "id": { "type": "string" },
+                  "title": { "type": "string" },
+                  "displayCount":
+                    {
+                      "type": "integer",
+                      "description": "지면(구좌)에 제안 받을 광고 아이템의 개수",
+                      "format": "int32",
+                    },
+                  "activated": { "type": "boolean" },
+                },
+            },
+          "ProductDTO":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "id":
+                    {
+                      "type": "string",
+                      "description": "스토어의 데이터베이스에 저장된 상품의 고유 식별자",
+                    },
+                },
+            },
+          "SuggestionDTO":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "product": { "$ref": "#/components/schemas/ProductDTO" },
+                  "logOptions":
+                    { "$ref": "#/components/schemas/LogOptionsDTO" },
+                },
+              "description": "광고 제안 목록",
+            },
+        },
+    },
+}

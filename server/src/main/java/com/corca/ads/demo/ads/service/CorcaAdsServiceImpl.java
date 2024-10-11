@@ -2,6 +2,9 @@ package com.corca.ads.demo.ads.service;
 
 import com.corca.ads.demo.ads.dto.CorcaAdsRequestDTO;
 import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
+import com.corca.ads.demo.common.exception.CorcaAdsApiException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -64,7 +67,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
 
       return response.getBody();
     } catch (HttpClientErrorException | HttpServerErrorException e) {
-      logger.error("HTTP error occurred while fetching products from Corca Ads", e);
+      logger.error("HTTP error occurred while fetching products from Corca Ads", (Throwable) e);
       throw e;
     } catch (Exception e) {
       logger.error("Error fetching products from Corca Ads", e);
