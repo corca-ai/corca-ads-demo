@@ -32,7 +32,15 @@ server/src/main/resources/application-*.properties
 web/node_modules/
 web/.nuxt/
 web/dist/
+web/.cache
+web/.output
+web/.data
+web/.nitro
 
+# Local env files
+.env
+.env.*
+!.env.example
 
 #################################
 ######## IDEs and editors #######
