@@ -1,6 +1,6 @@
 <script setup>
 import { useNuxtApp, callWithNuxt } from "#app";
-import { useFetchWithBaseUrl } from "~/composables/useFetchWithBaseUrl";
+import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 import { definePageMeta } from "#imports";
 
 // Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
@@ -8,7 +8,7 @@ definePageMeta({
   middleware: [
     async (to) => {
       const nuxtApp = useNuxtApp();
-      const { data: photo } = await useFetchWithBaseUrl(
+      const { data: photo } = await useFetchAdsSuggestion(
         `photos/${to.params.id}`
       );
       await callWithNuxt(nuxtApp, () => {

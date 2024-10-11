@@ -1,12 +1,18 @@
 <script setup>
+import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 defineProps(["photo", "isLoaded"]);
 
 const handleClick = async () => {
-  // TODO: Click API POST
-  // await useFetchWithBaseUrl(`/photos/${id}`, {
-  //   method: "POST",
-  // });
-  console.log("Click API POST");
+  // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
+  await useAdsEventLogger("click", {
+    body: {
+      customerId: "click을 한 유저 id",
+      requestId: "suggestion에서 받은 requestId",
+      productIdOnStore: "상품 id",
+      adsetId: "Product ID / Banner ID",
+      userAgent: "유저의 User Agent",
+    },
+  });
 };
 </script>
 

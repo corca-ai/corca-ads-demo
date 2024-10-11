@@ -1,9 +1,9 @@
 <script setup>
 import PhotoGrid from "~/components/PhotoGrid.vue";
-import { useFetchWithBaseUrl } from "~/composables/useFetchWithBaseUrl";
+import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 
 // CSR에서 상품 리스트 데이터를 fetch합니다.
-const { data: photos, pending } = await useFetchWithBaseUrl("photos", {
+const { data: photos, pending } = await useFetchAdsSuggestion("photos", {
   server: false, // CSR fetch
   params: {
     _limit: 20,

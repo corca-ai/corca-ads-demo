@@ -1,45 +1,33 @@
-import { createStorage } from "~/utils/storage/storage.factory";
-import { useFetchWithBaseUrl } from "./useFetchWithBaseUrl";
+import { useGlobalDeviceId, useGlobalSessionId } from "~/store/adcio";
 
-export const useAdsEventLogger: typeof useFetchWithBaseUrl = (
-  request,
-  opts?
-) => {
+// 이벤트 로깅은 CSR에서 코르카 Ads의 API를 요청해야 합니다.
+export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
   const config = useRuntimeConfig();
-  const clientId = config.public.clientId;
+  const storeId = config.public.storeId;
 
   if (process.server) {
     throw new Error("SSR mode일 때는 사용할 수 없습니다.");
   }
 
-  const deviceId = createStorage({
-    local: { key: `adcio-device-${clientId}` },
-  }).getOrSet();
+  const deviceId = useGlobalDeviceId();
+  const sessionId = useGlobalSessionId();
 
-  const sessionId = createStorage({
-    session: {
-      key: `adcio-session-${clientId}`,
-      expiration: 30 * 60 * 1000, // 30분 유효 기간
-    },
-  }).getOrSet();
+  console.log(request, opts, deviceId, sessionId, opts?.body);
 
-  const isPostRequest =
-    opts?.method && "method" in opts && opts.method === "post";
-
-  console.log({ request }, "????");
-
-  return useFetchWithBaseUrl(request, {
-    server: false,
+  return useFetch(request, {
     ...opts,
-    ...(isPostRequest && {
+    server: false,
+    baseURL: "https://receiver.adcio.ai/events/",
+    method: "post",
+    ...{
       body: {
-        clientId,
+        storeId,
         deviceId,
         sessionId,
-        ...(typeof opts.body === "object" && opts.body !== null
+        ...(typeof opts?.body === "object" && opts.body !== null
           ? opts.body
           : {}),
       },
-    }),
+    },
   });
 };
