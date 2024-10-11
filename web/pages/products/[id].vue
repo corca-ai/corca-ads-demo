@@ -50,7 +50,7 @@ const handleAddToCart = async (quantity) => {
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: photo.id,
+      productIdOnStore: photo.value.id,
       adsetId: "Product ID / Banner ID",
       categoryIdOnStore: "카테고리 ID",
       cartId: "장바구니 ID",
@@ -66,7 +66,7 @@ const handlePurchase = async (quantity) => {
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: photo.id,
+      productIdOnStore: photo.value.id,
       adsetId: "Product ID / Banner ID",
       categoryIdOnStore: "카테고리 ID",
       cartId: "장바구니 ID",

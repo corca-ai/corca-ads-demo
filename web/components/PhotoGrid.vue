@@ -22,7 +22,7 @@ const handleImpression = async (id) => {
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: "상품 id",
+      productIdOnStore: id,
       adsetId: "Product ID / Banner ID",
       userAgent: "유저의 User Agent",
     },
