@@ -1,7 +1,8 @@
 <script setup>
-import { useNuxtApp, callWithNuxt } from "#app";
-import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
+import { callWithNuxt, useNuxtApp } from "#app";
 import { definePageMeta } from "#imports";
+import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
+import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 
 // Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({
@@ -22,19 +23,53 @@ const nuxtApp = useNuxtApp();
 const photo = ref(nuxtApp.$requestData);
 
 // 페이지가 마운트되면 PageView 이벤트 API를 호출합니다.
-onMounted(() => {
-  // TODO: PageView API POST
-  console.log("PageView API POST");
+onMounted(async () => {
+  // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
+  await useAdsEventLogger("view", {
+    server: false,
+    body: {
+      customerId: "click을 한 유저 id",
+      requestId: "suggestion에서 받은 requestId",
+      productIdOnStore: "상품 id",
+      adsetId: "Product ID / Banner ID",
+      categoryIdOnStore: "카테고리 ID",
+      userAgent: "유저의 User Agent",
+    },
+  });
 });
 
 // 장바구니 버튼을 클릭하면 장바구니 API를 호출합니다.
-const handleAddToCart = async (photoId) => {
-  console.log(`Add to Cart API POST: ${photoId}`);
+const handleAddToCart = async (quantity) => {
+  await useAdsEventLogger("add-to-cart", {
+    server: false,
+    body: {
+      customerId: "click을 한 유저 id",
+      requestId: "suggestion에서 받은 requestId",
+      productIdOnStore: photo.id,
+      adsetId: "Product ID / Banner ID",
+      categoryIdOnStore: "카테고리 ID",
+      cartId: "장바구니 ID",
+      quantity,
+      userAgent: "유저의 User Agent",
+    },
+  });
 };
 
 // 구매 버튼을 클릭하면 구매 API를 호출합니다.
-const handlePurchase = async (photoId) => {
-  console.log(`Purchase API POST: ${photoId}`);
+const handlePurchase = async (quantity) => {
+  await useAdsEventLogger("purchase", {
+    server: false,
+    body: {
+      customerId: "click을 한 유저 id",
+      requestId: "suggestion에서 받은 requestId",
+      productIdOnStore: photo.id,
+      adsetId: "Product ID / Banner ID",
+      categoryIdOnStore: "카테고리 ID",
+      cartId: "장바구니 ID",
+      quantity,
+      userAgent: "유저의 User Agent",
+    },
+  });
 };
 </script>
 
@@ -56,7 +91,7 @@ const handlePurchase = async (photoId) => {
           :to="{ path: '/cart', query: { productId: photo.id, quantity: 1 } }"
         >
           <button
-            @click="handleAddToCart(photo.id)"
+            @click="handleAddToCart(quantity)"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           >
             장바구니

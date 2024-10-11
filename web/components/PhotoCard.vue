@@ -2,9 +2,11 @@
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 defineProps(["photo", "isLoaded"]);
 
+// 상품을 클릭 시 Click 이벤트 API를 호출합니다.
 const handleClick = async () => {
   // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("click", {
+    server: false,
     body: {
       customerId: "click을 한 유저 id",
       requestId: "suggestion에서 받은 requestId",

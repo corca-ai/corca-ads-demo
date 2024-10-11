@@ -6,17 +6,16 @@ export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
   const storeId = config.public.storeId;
 
   if (process.server) {
-    throw new Error("SSR mode일 때는 사용할 수 없습니다.");
+    throw new Error(
+      "deviceId와 sessionId가 스토리지에 저장되어 있기에, SSR일 때는 사용할 수 없습니다."
+    );
   }
 
   const deviceId = useGlobalDeviceId();
   const sessionId = useGlobalSessionId();
 
-  console.log(request, opts, deviceId, sessionId, opts?.body);
-
   return useFetch(request, {
     ...opts,
-    server: false,
     baseURL: "https://receiver.adcio.ai/events/",
     method: "post",
     ...{

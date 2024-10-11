@@ -14,11 +14,20 @@ const props = defineProps({
 });
 
 const photosRef = useTemplateRef("photos");
-const exposedPhotoIds = ref(new Set());
+const impressionIds = ref(new Set());
 
 // 노출 API를 호출하는 함수
-const callExposureApi = async (photoId) => {
-  console.log(`Exposure API POST: ${photoId}`);
+const handleImpression = async (id) => {
+  await useAdsEventLogger("impression", {
+    server: false,
+    body: {
+      customerId: "click을 한 유저 id",
+      requestId: "suggestion에서 받은 requestId",
+      productIdOnStore: "상품 id",
+      adsetId: "Product ID / Banner ID",
+      userAgent: "유저의 User Agent",
+    },
+  });
 };
 
 // 아이템이 화면에 노출되었을 때 노출 API를 호출합니다.
@@ -33,9 +42,9 @@ const observePhotos = () => {
       ([{ isIntersecting }]) => {
         if (isIntersecting) {
           intersectionTimer = setTimeout(() => {
-            if (isIntersecting && !exposedPhotoIds.value.has(photo.id)) {
-              callExposureApi(photo.id).then(() => {
-                exposedPhotoIds.value.add(photo.id);
+            if (isIntersecting && !impressionIds.value.has(photo.id)) {
+              handleImpression(photo.id).then(() => {
+                impressionIds.value.add(photo.id);
               });
             }
           }, INTERSECTION_TIMER);
