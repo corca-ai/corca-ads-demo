@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+/**
+ * Corca Ads 관련 API 요청을 처리하는 컨트롤러입니다.
+ * 이 컨트롤러는 광고 상품을 가져오기 위한 엔드포인트를 제공합니다.
+ */
 @RestController
 @Tag(name = "Corca Ads", description = "API used to fetch products from Corca Ads")
 @RequestMapping("/api/corca-ads")
@@ -29,6 +33,13 @@ public class CorcaAdsController {
     this.corcaAdsService = corcaAdsService;
   }
 
+  /**
+   * 제공된 매개변수를 기반으로 Corca Ads에서 상품 광고를 가져옵니다.
+   *
+   * @param params placementId, sessionId, deviceId, customerId, userAgent를 포함한 요청
+   *               매개변수 맵
+   * @return 가져온 상품 광고가 포함된 CorcaAdsProductResponseDTO를 담은 ResponseEntity
+   */
   @GetMapping("/products")
   @Operation(summary = "Fetch products from Corca Ads", description = "Returns retrieved advertisement products based on the parameters provided.")
   @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
