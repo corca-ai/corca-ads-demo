@@ -48,7 +48,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
    * @param sessionId 엔드 유저의 세션 ID
    * @param deviceId 엔드 유저의 기기 ID
    * @param customerId 스토어에서 엔드 유저를 식별하기 위한 ID (스토어가 원하지 않거나, 로그인하지 않은 사용자의 경우 null일 수 있음)
-   * @param userAgent 최종 사용자 브라우저의 User-Agent 헤더 정보
+   * @param userAgent 엔드 유저 브라우저의 User-Agent 헤더 정보
    * @return 가져온 광고 상품들과 지면 정보, 엔드 유저 이벤트 로그 수집을 위한 값을 반환 CorcaAdsProductResponseDTO
    * @throws CorcaAdsApiException 상품을 가져오는 동안 오류가 발생한 경우
    */
