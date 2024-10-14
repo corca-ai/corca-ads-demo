@@ -33,6 +33,8 @@ public class CorcaAdsController {
 
   /**
    * 제공된 매개변수를 기반으로 Corca Ads에서 상품 광고를 가져옵니다.
+   * 
+   * 📍 참고: 데모에서는 실제 DB 대신 더미 JSON 파일에서 상품 데이터를 조회하여 맵핑합니다.
    *
    * @param params placementId, sessionId, deviceId, customerId, userAgent를 포함한 요청 매개변수 맵
    * @return 가져온 상품 광고가 포함된 CorcaAdsProductResponseDTO를 담은 ResponseEntity

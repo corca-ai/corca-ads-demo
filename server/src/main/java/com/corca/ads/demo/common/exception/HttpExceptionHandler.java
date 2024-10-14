@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
@@ -53,5 +54,13 @@ public class HttpExceptionHandler {
         new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error",
             ex.getMessage(), request.getDescription(false), LocalDateTime.now());
     return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler(ResponseStatusException.class)
+  public ResponseEntity<ErrorResponse> handleResponseStatusException(ResponseStatusException ex,
+      WebRequest request) {
+    ErrorResponse errorResponse = new ErrorResponse(ex.getStatusCode().value(), ex.getReason(),
+        ex.getMessage(), request.getDescription(false), LocalDateTime.now());
+    return new ResponseEntity<>(errorResponse, ex.getStatusCode());
   }
 }
