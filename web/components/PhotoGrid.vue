@@ -17,7 +17,11 @@ const props = defineProps({
 const photosRef = useTemplateRef("photos");
 const impressionIds = ref(new Set());
 
-// 노출 API를 호출하는 함수
+/**
+ * @description
+ * 노출 버튼 클릭시 호출할 함수
+ * 코르카 Ads의 impression 이벤트 로깅 API를 호출합니다.
+ */
 const handleImpression = async (id) => {
   await useAdsEventLogger("impression", {
     body: {
@@ -30,8 +34,12 @@ const handleImpression = async (id) => {
   });
 };
 
-// 아이템이 화면에 노출되었을 때 노출 API를 호출합니다.
-// 이 때 1초동안 노출된 아이템만 노출 API를 호출하며, 이미 호출한 아이템은 다시 호출하지 않습니다.
+/**
+ * @description
+ * 코르카 ads 정책상, 아이템이 viewport에 1초가량 impression된 상품만 이벤트 로그 impression API를 호출합니다.
+ * - 한 번 본 상품은 다시 1초 가량 impression되어도 API를 호출하지 않습니다.
+ * - 관찰 대상의 50%가 뷰포트에 보이면 노출되었다고 봅니다.
+ */
 const observePhotos = () => {
   props.photos.forEach((photo, index) => {
     const photoRef = photosRef.value[index];

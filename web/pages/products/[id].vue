@@ -22,7 +22,7 @@ definePageMeta({
 const nuxtApp = useNuxtApp();
 const photo = ref(nuxtApp.$requestData);
 
-// 페이지가 마운트되면 PageView 이벤트 API를 호출합니다.
+// 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
 onMounted(async () => {
   /**
    * @description
@@ -44,7 +44,11 @@ onMounted(async () => {
   });
 });
 
-// 장바구니 버튼을 클릭하면 장바구니 API를 호출합니다.
+/**
+ * @description
+ * 장바구니 버튼 클릭시 호출할 함수
+ * 코르카 Ads의 add-to-cart 이벤트 로깅 API를 호출합니다.
+ */
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
     body: {
@@ -60,7 +64,11 @@ const handleAddToCart = async (quantity) => {
   });
 };
 
-// 구매 버튼을 클릭하면 구매 API를 호출합니다.
+/**
+ * @description
+ * 구매 버튼 클릭시 호출할 함수
+ * 코르카 Ads의 purchase 이벤트 로깅 API를 호출합니다.
+ */
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
     body: {
