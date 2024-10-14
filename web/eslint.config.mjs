@@ -15,8 +15,8 @@ export default createConfigForNuxt({
       "error",
       {
         html: {
-          void: "never",
-          normal: "always",
+          void: "always",
+          normal: "never",
           component: "always",
         },
         svg: "always",
