@@ -1,6 +1,6 @@
 <script setup>
 import { callWithNuxt, useNuxtApp } from "#app";
-import { definePageMeta } from "#imports";
+import { definePageMeta, nextTick } from "#imports";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 
