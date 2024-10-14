@@ -2,6 +2,7 @@
 import { ref, useTemplateRef, defineProps } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
 import PhotoCard from "~/components/PhotoCard.vue";
+import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 
 const INTERSECTION_THRESHOLD = 0.5;
 const INTERSECTION_TIMER = 1000;
