@@ -4,7 +4,7 @@ import { definePageMeta, nextTick } from "#imports";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 
-// Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
+// 보리보리와 동일하게, Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({
   middleware: [
     async (to) => {
