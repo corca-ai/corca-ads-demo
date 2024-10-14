@@ -5,7 +5,7 @@ export const useGlobalDeviceId = createGlobalState(() => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;
 
-  return useStorage(`adcio-device-${storeId}`, createUUID());
+  return useStorage(`ads-device-${storeId}`, createUUID());
 });
 
 const EXPIRATION_STORAGE = 30 * 60 * 1000; // session id 만료 시간: 30분
@@ -13,7 +13,7 @@ export const useGlobalSessionId = createGlobalState(() => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;
 
-  const storageKey = `adcio-session-${storeId}`;
+  const storageKey = `ads-session-${storeId}`;
   const expirationKey = `${storageKey}-expiration`;
 
   const getSessionId = () => {
