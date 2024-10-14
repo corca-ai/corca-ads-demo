@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Schema(description = "Request DTO for Corca Ads API")
+@Schema(description = "Corca Ads API 요청 DTO")
 public class CorcaAdsRequestDTO {
   @Schema(description = "Corca Ads 서비스의 클라이언트 ID", required = true)
   private String clientId;
@@ -28,8 +28,7 @@ public class CorcaAdsRequestDTO {
   @Schema(description = "엔드유저의 User-Agent 정보", required = false)
   private String userAgent;
 
-  public static CorcaAdsRequestDTO create(
-      String clientId, String placementId, String sessionId,
+  public static CorcaAdsRequestDTO create(String clientId, String placementId, String sessionId,
       String deviceId, String customerId, String userAgent) {
     CorcaAdsRequestDTO request = new CorcaAdsRequestDTO();
     request.setClientId(clientId);

@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Schema(description = "Response DTO for Corca Ads Product API")
+@Schema(description = "Corca Ads 상품 응답 DTO")
 public class CorcaAdsProductResponseDTO {
   @Schema(description = "광고 제안 목록")
   private List<SuggestionDTO> suggestions;
