@@ -1,7 +1,35 @@
-# Spring Boot
+#################################
+########## Spring Boot ##########
+#################################
+server/HELP.md
+server/.gradle
+server/build/
+!server/gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+server/out/
+server/bin/
+server/.settings/
+server/.classpath
+server/.project
+server/*.class
+server/*.jar
+server/*.war
+server/*.log
 
+server/src/main/resources/application-*.properties
+!server/src/main/resources/application.properties
 
-# Nuxt.js
+server/.restart
+
+#################################
+############ OpenAPI ############
+#################################
+!api-docs/openapi.yaml
+
+#################################
+############ Nuxt.js ############
+#################################
 web/node_modules/
 web/.nuxt/
 web/dist/
@@ -10,17 +38,52 @@ web/.output
 web/.data
 web/.nitro
 
+# Nuxt generate
+web/dist/
+web/generate/
+
 # Local env files
 .env
 .env.*
 !.env.example
 
-# IDEs and editors
+#################################
+######## IDEs and editors #######
+#################################
 .idea/
 .vscode/
 *.iws
 *.iml
 *.ipr
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# OS generated files
+#################################
+###### OS generated files #######
+#################################
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#################################
+########### Logs ################
+#################################
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#################################
+########### Others ##############
+#################################
+*.bak
+*.tmp
+*.temp
