@@ -1,4 +1,4 @@
-import { useGlobalDeviceId, useGlobalSessionId } from "~/store/adcio";
+import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
 
 // 이벤트 로깅은 CSR에서 코르카 Ads의 API를 요청해야 합니다.
 export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
