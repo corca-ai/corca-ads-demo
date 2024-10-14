@@ -95,8 +95,8 @@ const handlePurchase = async (quantity) => {
           :to="{ path: '/cart', query: { productId: photo.id, quantity: 1 } }"
         >
           <button
-            @click="handleAddToCart(quantity)"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            @click="handleAddToCart(quantity)"
           >
             장바구니
           </button>
@@ -108,8 +108,8 @@ const handlePurchase = async (quantity) => {
           }"
         >
           <button
-            @click="handlePurchase(quantity)"
             class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+            @click="handlePurchase(quantity)"
           >
             구매
           </button>
