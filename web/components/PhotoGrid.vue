@@ -71,10 +71,10 @@ onMounted(() => {
   >
     <div
       v-for="photo in props.photos"
-      :key="photo.id"
       :id="`photo-${photo.id}`"
-      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+      :key="photo.id"
       ref="photos"
+      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
     >
       <PhotoCard :photo="photo" />
     </div>

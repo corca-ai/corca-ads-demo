@@ -1,6 +1,16 @@
 <script setup>
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
-defineProps(["photo", "isLoaded"]);
+defineProps({
+  photo: {
+    type: {
+      id: Number,
+      title: String,
+      url: String,
+    },
+    required: true,
+  },
+  isLoaded: Boolean,
+});
 
 // 상품을 클릭 시 Click 이벤트 API를 호출합니다.
 const handleClick = async () => {
