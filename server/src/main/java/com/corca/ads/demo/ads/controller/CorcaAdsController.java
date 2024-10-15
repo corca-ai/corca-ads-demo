@@ -40,7 +40,8 @@ public class CorcaAdsController {
    * @return 가져온 상품 광고가 포함된 CorcaAdsProductResponseDTO를 담은 ResponseEntity
    */
   @GetMapping("/products")
-  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다", description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
+  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다.",
+      description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
   @ApiResponse(responseCode = "200", description = "Success",
       content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
   public ResponseEntity<CorcaAdsProductResponseDTO> getCorcaAdsProducts(

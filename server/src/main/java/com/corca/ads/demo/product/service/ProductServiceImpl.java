@@ -4,6 +4,9 @@ import com.corca.ads.demo.product.dto.ProductDTO;
 import com.corca.ads.demo.common.util.JsonUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,5 +31,17 @@ public class ProductServiceImpl implements ProductService {
     return products.stream().filter(product -> product.getId().equals(productId)).findFirst()
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
             "Product not found with id: " + productId));
+  }
+
+  @Override
+  public Page<ProductDTO> getProducts(Pageable pageable) {
+    logger.info("Fetching product list with page: {}", pageable.getPageNumber());
+
+    int start = (int) pageable.getOffset();
+    int end = Math.min((start + pageable.getPageSize()), products.size());
+
+    List<ProductDTO> pageContent = products.subList(start, end);
+
+    return new PageImpl<>(pageContent, pageable, products.size());
   }
 }
