@@ -69,8 +69,9 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
           restTemplate.exchange(url, HttpMethod.POST, entity, CorcaAdsProductResponseDTO.class);
       logger.info("Successfully fetched products from Corca Ads for placement: {}", placementId);
 
-      // local file로 보리보리 상품 데이터를 더미로 넣어두고 해당 파일에서 id를 맵핑하여 반환하도록 할 예정 -> 이 로직은 보리보리 측 DB 조회를 보여주기
-      // 위함이라는 것을 주석으로 명시
+      // todo: local file로 보리보리 상품 데이터를 더미로 넣어두고 해당 파일에서 id를 맵핑하여 반환하도록 할 예정 -> 이 로직은 보리보리 측 DB 조회를
+      // 보여주기 위함이라는 것을 주석으로 명시
+      // todo: 해당 엔드포인트 및 서비스구현체에서 보리보리 상품 DTO로 변환하여 반환, JsonUtil 사용
 
       return response.getBody();
     } catch (HttpClientErrorException | HttpServerErrorException e) {

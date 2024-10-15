@@ -33,12 +33,15 @@ public class CorcaAdsController {
 
   /**
    * 제공된 매개변수를 기반으로 Corca Ads에서 상품 광고를 가져옵니다.
+   * 
+   * 📍 참고: 데모에서는 실제 DB 대신 더미 JSON 파일에서 상품 데이터를 조회하여 맵핑합니다.
    *
    * @param params placementId, sessionId, deviceId, customerId, userAgent를 포함한 요청 매개변수 맵
    * @return 가져온 상품 광고가 포함된 CorcaAdsProductResponseDTO를 담은 ResponseEntity
    */
   @GetMapping("/products")
-  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다", description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
+  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다.",
+      description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
   @ApiResponse(responseCode = "200", description = "Success",
       content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
   public ResponseEntity<CorcaAdsProductResponseDTO> getCorcaAdsProducts(

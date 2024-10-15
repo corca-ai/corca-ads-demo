@@ -10,10 +10,7 @@ public class SwaggerConfig {
 
   @Bean
   public OpenAPI customOpenAPI() {
-    return new OpenAPI()
-        .info(new Info()
-            .title("Corca Ads Demo Server")
-            .version("1.0")
-            .description("API for Demo Server using Corca Ads"));
+    return new OpenAPI().info(new Info().title("Corca Ads Demo Server").version("1.0")
+        .description("API for Demo Server using Corca Ads"));
   }
 }
