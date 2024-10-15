@@ -1,6 +1,10 @@
 import { createGlobalState, useSessionStorage, useStorage } from "@vueuse/core";
 import { useRuntimeConfig } from "#app";
 
+/**
+ * @description
+ * 코르카 ads 이벤트 로깅 시 request dto 필드로 전달해줄 deviceId를 전역 상태로 관리하는 컴포저블
+ */
 export const useGlobalDeviceId = createGlobalState(() => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;
@@ -9,6 +13,11 @@ export const useGlobalDeviceId = createGlobalState(() => {
 });
 
 const EXPIRATION_STORAGE = 30 * 60 * 1000; // session id 만료 시간: 30분
+/**
+ * @description
+ * 코르카 ads 이벤트 로깅 시 request dto 필드로 전달해줄 sessionId를 전역 상태로 관리하는 컴포저블
+ * 코르카 ads 정책상, sessionId는 30분이 지나면 만료시키고 재발급해야 합니다.
+ */
 export const useGlobalSessionId = createGlobalState(() => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;

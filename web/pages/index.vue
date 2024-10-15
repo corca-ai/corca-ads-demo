@@ -2,7 +2,7 @@
 import PhotoGrid from "~/components/PhotoGrid.vue";
 import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
 
-// CSR에서 상품 리스트 데이터를 fetch합니다.
+// 상품 리스트는 보리보리와 동일하게 CSR에서 데이터를 fetch합니다.
 const { data: photos, pending } = await useFetchAdsSuggestion("photos", {
   server: false, // CSR fetch
   params: {

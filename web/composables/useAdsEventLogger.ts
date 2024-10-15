@@ -1,6 +1,11 @@
 import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
 
-// 이벤트 로깅은 CSR에서 코르카 Ads의 API를 요청해야 합니다.
+/**
+ * @description
+ * 코르카 Ads의 이벤트 로깅 API를 호출하는 데 사용되는 컴포저블 함수입니다.
+ * 이벤트 로깅 시 `storeId`, `deviceId`, `sessionId`는 필수로 요청 DTO에 포함되어야 합니다.
+ * - 이벤트 로깅 API 주소: https://receiver.adcio.ai/events/
+ */
 export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
   const config = useRuntimeConfig();
   const storeId = config.public.storeId;
