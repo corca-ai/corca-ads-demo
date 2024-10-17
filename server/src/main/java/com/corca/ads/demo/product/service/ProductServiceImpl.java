@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
   private final List<ProductDTO> products;
 
   public ProductServiceImpl() throws IOException {
-    this.products = JsonUtil.readJsonFile("boribori-dummy-products.json", ProductDTO.class);
+    this.products = JsonUtil.readJsonFile("dummy-products.json", ProductDTO.class);
   }
 
   @Override

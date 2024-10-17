@@ -138,7 +138,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   private CorcaAdsProductResponseDTO.SuggestionDTO parseSuggestion(JsonNode suggestionNode) {
     CorcaAdsProductResponseDTO.SuggestionDTO suggestionDTO =
         new CorcaAdsProductResponseDTO.SuggestionDTO();
-    String productId = suggestionNode.path("product").path("id").asText();
+    // TODO: idOnStore에서 api 응답 스키마 변경 후 id로 변경
+    String productId = suggestionNode.path("product").path("idOnStore").asText();
 
     suggestionDTO.setProduct(productService.getProduct(productId));
     suggestionDTO.setLogOptions(parseLogOptions(suggestionNode.path("logOptions")));
