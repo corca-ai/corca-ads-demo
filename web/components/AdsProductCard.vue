@@ -1,23 +1,6 @@
 <script setup>
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
-const props = defineProps({
-  product: {
-    type: {
-      id: Number,
-      title: String,
-      url: String,
-    },
-    required: true,
-  },
-  logOptions: {
-    type: {
-      requestId: String,
-      adsetId: String,
-    },
-    required: true,
-  },
-  isLoaded: Boolean,
-});
+const props = defineProps(["product", "logOptions"]);
 
 /**
  * @description
@@ -39,7 +22,11 @@ const handleClick = async () => {
 <template>
   <div>
     <div v-if="isLoaded">loading</div>
-    <div v-else @click="handleClick">
+    <div
+      v-else
+      @click="handleClick"
+      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+    >
       <NuxtLink
         :to="{
           path: `products/${props.product.id}`,

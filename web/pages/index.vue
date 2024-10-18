@@ -1,5 +1,5 @@
 <script setup>
-import PhotoGrid from "~/components/PhotoGrid.vue";
+import ProductGrid from "~/components/ProductGrid.vue";
 import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
 
 const config = useRuntimeConfig();
@@ -37,7 +37,7 @@ const { data: boryboryProducts, pending: boryboryPending } = useFetch(
       <div>Loading...</div>
     </div>
     <div v-else>
-      <PhotoGrid
+      <ProductGrid
         :adsProducts="adsProducts"
         :boryboryProducts="boryboryProducts"
       />

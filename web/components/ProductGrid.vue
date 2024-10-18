@@ -1,47 +1,15 @@
 <script setup>
 import { ref, useTemplateRef, defineProps } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
-import AdsPhotoCard from "~/components/AdsPhotoCard.vue";
+import AdsProductCard from "~/components/AdsProductCard.vue";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 
 const INTERSECTION_THRESHOLD = 0.5;
 const INTERSECTION_TIMER = 1000;
 
-const props = defineProps({
-  adsProducts: {
-    type: {
-      suggestions: [
-        {
-          product: {
-            id: "string",
-            name: "string",
-            price: "number",
-            discountPrice: "number",
-            image: "string",
-            summary: "string",
-          },
-          logOptions: {
-            requestId: "string",
-            adsetId: "string",
-          },
-        },
-      ],
-      placement: {
-        id: "string",
-        title: "string",
-        displayCount: "number",
-        activated: "boolean",
-      },
-    },
-    required: true,
-  },
-  boryboryProducts: {
-    type: Array,
-    required: true,
-  },
-});
+const props = defineProps(["adsProducts", "boryboryProducts"]);
 
-const photosRef = useTemplateRef("photos");
+const adsProductsRef = useTemplateRef("adsProducts");
 const impressionIds = ref(new Set());
 
 /**
@@ -66,13 +34,13 @@ const handleImpression = async (id, logOptions) => {
  * - 한 번 본 상품은 다시 1초 가량 impression되어도 API를 호출하지 않습니다.
  * - 관찰 대상의 50%가 뷰포트에 보이면 노출되었다고 봅니다.
  */
-const observePhotos = () => {
+const observeAdsProducts = () => {
   props.adsProducts.suggestions.forEach((suggestion, index) => {
-    const photoRef = photosRef.value[index];
+    const adsProductRef = adsProductsRef.value[index];
     let intersectionTimer = null;
 
     useIntersectionObserver(
-      photoRef,
+      adsProductRef,
       ([{ isIntersecting }]) => {
         if (isIntersecting) {
           intersectionTimer = window.setTimeout(() => {
@@ -103,34 +71,29 @@ const observePhotos = () => {
 };
 
 onMounted(() => {
-  observePhotos();
+  observeAdsProducts();
 });
 </script>
 
 <template>
   <div
-    id="photo-grid"
+    id="product-grid"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 w-full max-w-7xl mx-auto"
   >
     <!-- Ads Products 렌더링 -->
     <div
       v-for="suggestion in props.adsProducts.suggestions"
       :key="suggestion.product.id"
-      ref="photos"
-      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+      ref="adsProducts"
     >
-      <AdsPhotoCard
+      <AdsProductCard
         :product="suggestion.product"
         :logOptions="suggestion.logOptions"
       />
     </div>
 
     <!-- Borybory Products 렌더링 -->
-    <div
-      v-for="product in props.boryboryProducts.content"
-      :key="product.id"
-      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
-    >
+    <div v-for="product in props.boryboryProducts.content" :key="product.id">
       <BoryboryProductCard :product="product" />
     </div>
   </div>
