@@ -1,21 +1,24 @@
 package com.corca.ads.demo.ads.controller;
 
-import com.corca.ads.demo.ads.service.CorcaAdsService;
-import com.corca.ads.demo.ads.dto.CorcaAdsRequestDTO;
 import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.corca.ads.demo.ads.dto.CorcaAdsRequestDTO;
+import com.corca.ads.demo.ads.service.CorcaAdsService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Corca Ads 관련 API 요청을 처리하는 컨트롤러입니다. 이 컨트롤러는 광고 상품을 가져오기 위한 엔드포인트를 제공합니다.
@@ -44,7 +47,7 @@ public class CorcaAdsController {
       description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
   @ApiResponse(responseCode = "200", description = "Success",
       content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
-  public ResponseEntity<CorcaAdsProductResponseDTO> getCorcaAdsProducts(
+  public CompletableFuture<ResponseEntity<CorcaAdsProductResponseDTO>> getCorcaAdsProducts(
       @Parameter(description = "Corca Ads 요청 파라미터", schema = @Schema(
           implementation = CorcaAdsRequestDTO.class)) @RequestParam Map<String, String> params) {
     String placementId = params.get("placementId");
@@ -53,8 +56,8 @@ public class CorcaAdsController {
     String customerId = params.get("customerId");
     String userAgent = params.get("userAgent");
 
-    CorcaAdsProductResponseDTO result = corcaAdsService.fetchProductsFromCorcaAds(placementId,
-        sessionId, deviceId, customerId, userAgent);
-    return ResponseEntity.ok(result);
+    return corcaAdsService
+        .fetchProductsFromCorcaAds(placementId, sessionId, deviceId, customerId, userAgent)
+        .thenApply(ResponseEntity::ok);
   }
 }
