@@ -1,7 +1,7 @@
 package com.corca.ads.demo.ads.service;
 
 import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
-import com.corca.ads.demo.ads.dto.CorcaAdsRequestDTO;
+import com.corca.ads.demo.ads.dto.CorcaAdsApiRequestDTO;
 import com.corca.ads.demo.common.exception.CorcaAdsApiException;
 import com.corca.ads.demo.product.service.ProductService;
 
@@ -71,9 +71,9 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
 
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    CorcaAdsRequestDTO request = CorcaAdsRequestDTO.create(corcaAdsClientId, placementId, sessionId,
-        deviceId, customerId, userAgent);
-    HttpEntity<CorcaAdsRequestDTO> entity = new HttpEntity<>(request, headers);
+    CorcaAdsApiRequestDTO request = CorcaAdsApiRequestDTO.create(corcaAdsClientId, placementId,
+        sessionId, deviceId, customerId, userAgent);
+    HttpEntity<CorcaAdsApiRequestDTO> entity = new HttpEntity<>(request, headers);
     String url = corcaAdsApiUrl + "/v1/advertisements/products";
 
     try {
