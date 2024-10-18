@@ -83,7 +83,7 @@ const handlePurchase = async (quantity) => {
 <template>
   <div class="flex items-center justify-center w-full h-screen p-8 bg-gray-100">
     <div
-      class="flex flex-col items-center w-4/5 max-w-3xl bg-white p-6 rounded-lg shadow-md"
+      class="flex flex-col items-center w-1/3 bg-white p-6 rounded-lg shadow-md"
     >
       <img
         :src="`${productInfo.image}`"
