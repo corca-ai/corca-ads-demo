@@ -163,8 +163,8 @@
                     },
                   "number": { "type": "integer", "format": "int32" },
                   "sort": { "$ref": "#/components/schemas/SortObject" },
-                  "numberOfElements": { "type": "integer", "format": "int32" },
                   "pageable": { "$ref": "#/components/schemas/PageableObject" },
+                  "numberOfElements": { "type": "integer", "format": "int32" },
                   "empty": { "type": "boolean" },
                 },
             },
@@ -175,10 +175,10 @@
                 {
                   "offset": { "type": "integer", "format": "int64" },
                   "sort": { "$ref": "#/components/schemas/SortObject" },
-                  "pageNumber": { "type": "integer", "format": "int32" },
-                  "pageSize": { "type": "integer", "format": "int32" },
                   "paged": { "type": "boolean" },
                   "unpaged": { "type": "boolean" },
+                  "pageNumber": { "type": "integer", "format": "int32" },
+                  "pageSize": { "type": "integer", "format": "int32" },
                 },
             },
           "ProductDTO":
@@ -186,12 +186,14 @@
               "type": "object",
               "properties":
                 {
-                  "id":
-                    {
-                      "type": "string",
-                      "description": "스토어의 데이터베이스에 저장된 상품의 고유 식별자",
-                    },
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "price": { "type": "number", "format": "double" },
+                  "discountPrice": { "type": "number", "format": "double" },
+                  "image": { "type": "string" },
+                  "summary": { "type": "string" },
                 },
+              "description": "보리보리 상품 DTO",
             },
           "SortObject":
             {
@@ -262,26 +264,36 @@
               "type": "object",
               "properties":
                 {
-                  "requestId": { "type": "string" },
-                  "adsetId": { "type": "string" },
+                  "requestId":
+                    {
+                      "type": "string",
+                      "description": "광고에 대한 요청을 식별하기 위한 값, 엔드유저 이벤트에 대해 로그 수집 시 사용",
+                    },
+                  "adsetId":
+                    {
+                      "type": "string",
+                      "description": "광고의 소재를 식별하기 위한 값",
+                    },
                 },
-              "description": "광고 제안에 대한 성과 추적을 위한 값, 엔드유저 이벤트에 대해 로그 수집 시 사용",
+              "description": "광고 성과 추적 정보",
             },
           "PlacementDTO":
             {
               "type": "object",
               "properties":
                 {
-                  "id": { "type": "string" },
-                  "title": { "type": "string" },
+                  "id": { "type": "string", "description": "지면 ID" },
+                  "title": { "type": "string", "description": "지면 타이틀" },
                   "displayCount":
                     {
                       "type": "integer",
                       "description": "지면(구좌)에 제안 받을 광고 아이템의 개수",
                       "format": "int32",
                     },
-                  "activated": { "type": "boolean" },
+                  "activated":
+                    { "type": "boolean", "description": "지면 활성화 여부" },
                 },
+              "description": "광고 지면 정보",
             },
           "SuggestionDTO":
             {
@@ -292,7 +304,7 @@
                   "logOptions":
                     { "$ref": "#/components/schemas/LogOptionsDTO" },
                 },
-              "description": "광고 제안 목록",
+              "description": "광고 제안 정보",
             },
         },
     },
