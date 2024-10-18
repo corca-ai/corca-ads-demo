@@ -1,6 +1,6 @@
 export const useFetchAdsSuggestion: typeof useFetch = (request, opts?) => {
   return useFetch(request, {
-    baseURL: "https://jsonplaceholder.typicode.com/",
+    baseURL: "http://localhost:8080/api/",
     ...opts,
   });
 };
