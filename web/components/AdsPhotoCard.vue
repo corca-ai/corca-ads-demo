@@ -19,9 +19,12 @@ const props = defineProps({
   isLoaded: Boolean,
 });
 
-// 상품을 클릭 시 Click 이벤트 API를 호출합니다.
+/**
+ * @description
+ * 상품을 클릭 시 호출할 함수
+ * 코르카 Ads의 click 이벤트 로깅 API를 호출합니다.
+ */
 const handleClick = async () => {
-  // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("click", {
     body: {
       requestId: props.logOptions.requestId,
@@ -46,9 +49,14 @@ const handleClick = async () => {
           },
         }"
       >
+        <div
+          class="absolute top-2 right-2 bg-green-500 text-white px-3 py-1 text-xs rounded-full shadow-md"
+        >
+          코르카 광고
+        </div>
         <img
           :src="`${props.product.image}`"
-          alt="코르카 상품 이미지"
+          alt="코르카 광고 상품 이미지"
           width="500"
           height="500"
           class="mb-2"

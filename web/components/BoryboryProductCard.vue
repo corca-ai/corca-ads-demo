@@ -20,7 +20,7 @@ const props = defineProps({
       <NuxtLink :to="`products/${props.product.id}`">
         <img
           :src="`${props.product.image}`"
-          alt="Photo Avatar"
+          alt="보리보리 상품 이미지"
           width="500"
           height="500"
           class="mb-2"

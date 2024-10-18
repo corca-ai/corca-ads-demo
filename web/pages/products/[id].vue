@@ -32,7 +32,6 @@ onMounted(async () => {
    */
   await nextTick();
 
-  // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("view", {
     body: {
       requestId: route.query.requestId,
