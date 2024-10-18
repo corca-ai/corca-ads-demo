@@ -1,6 +1,6 @@
 <script setup>
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
-defineProps({
+const props = defineProps({
   photo: {
     type: {
       id: Number,
@@ -31,15 +31,15 @@ const handleClick = async () => {
   <div>
     <div v-if="isLoaded">loading</div>
     <div v-else @click="handleClick">
-      <NuxtLink :to="`products/${photo.id}`">
+      <NuxtLink :to="`products/${props.photo.product.id}`">
         <img
-          :src="`${photo.url}`"
+          :src="`${props.photo.product.image}`"
           alt="Photo Avatar"
           width="500"
           height="500"
           class="mb-2"
         />
-        <div>{{ photo.title }}</div>
+        <div>{{ props.photo.product.name }}</div>
       </NuxtLink>
     </div>
   </div>

@@ -8,7 +8,7 @@ const storeId = config.public.storeId;
 const deviceId = useGlobalDeviceId();
 const sessionId = useGlobalSessionId();
 
-const { data: photos, pending } = await useFetch("corca-ads/products", {
+const { data: adsProducts, pending } = await useFetch("corca-ads/products", {
   baseURL: "http://localhost:8080/api/",
   server: false, // CSR fetch
   params: {
@@ -26,7 +26,7 @@ const { data: photos, pending } = await useFetch("corca-ads/products", {
       <div>Loading...</div>
     </div>
     <div v-else>
-      <PhotoGrid :photos="photos" />
+      <PhotoGrid :adsProducts="adsProducts" />
     </div>
   </div>
 </template>

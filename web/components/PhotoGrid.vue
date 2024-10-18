@@ -8,14 +8,39 @@ const INTERSECTION_THRESHOLD = 0.5;
 const INTERSECTION_TIMER = 1000;
 
 const props = defineProps({
-  photos: {
-    type: Array,
+  adsProducts: {
+    type: {
+      suggestions: [
+        {
+          product: {
+            id: "string",
+            name: "string",
+            price: "number",
+            discountPrice: "number",
+            image: "string",
+            summary: "string",
+          },
+          logOptions: {
+            requestId: "string",
+            adsetId: "string",
+          },
+        },
+      ],
+      placement: {
+        id: "string",
+        title: "string",
+        displayCount: "number",
+        activated: "boolean",
+      },
+    },
     required: true,
   },
 });
 
 const photosRef = useTemplateRef("photos");
 const impressionIds = ref(new Set());
+
+// console.log(props.adsProducts.suggestions[0].product);
 
 /**
  * @description
@@ -78,7 +103,7 @@ onMounted(() => {
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 w-full max-w-7xl mx-auto"
   >
     <div
-      v-for="photo in props.photos"
+      v-for="photo in props.adsProducts.suggestions"
       :id="`photo-${photo.id}`"
       :key="photo.id"
       ref="photos"

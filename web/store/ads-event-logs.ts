@@ -1,5 +1,8 @@
 import { createGlobalState, useSessionStorage, useStorage } from "@vueuse/core";
 import { useRuntimeConfig } from "#app";
+import { nanoid } from "nanoid";
+
+const createUUID = () => nanoid();
 
 /**
  * @description
@@ -47,5 +50,3 @@ export const useGlobalSessionId = createGlobalState(() => {
 
   return getSessionId();
 });
-
-const createUUID = () => crypto.randomUUID();

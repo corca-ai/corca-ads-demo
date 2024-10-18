@@ -8,11 +8,4 @@ export default defineNuxtConfig({
     },
   },
   modules: ["@nuxtjs/tailwindcss"],
-  nitro: {
-    routeRules: {
-      "/api/**": {
-        proxy: "http://localhost:8080/api/**",
-      },
-    },
-  },
 });
