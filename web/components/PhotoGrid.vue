@@ -1,7 +1,7 @@
 <script setup>
 import { ref, useTemplateRef, defineProps } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
-import PhotoCard from "~/components/PhotoCard.vue";
+import AdsPhotoCard from "~/components/AdsPhotoCard.vue";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 
 const INTERSECTION_THRESHOLD = 0.5;
@@ -35,26 +35,27 @@ const props = defineProps({
     },
     required: true,
   },
+  boryboryProducts: {
+    type: Array,
+    required: true,
+  },
 });
 
 const photosRef = useTemplateRef("photos");
 const impressionIds = ref(new Set());
-
-// console.log(props.adsProducts.suggestions[0].product);
 
 /**
  * @description
  * 노출 버튼 클릭시 호출할 함수
  * 코르카 Ads의 impression 이벤트 로깅 API를 호출합니다.
  */
-const handleImpression = async (id) => {
+const handleImpression = async (id, logOptions) => {
   await useAdsEventLogger("impression", {
     body: {
-      customerId: "click을 한 유저 id",
-      requestId: "suggestion에서 받은 requestId",
+      requestId: logOptions.requestId,
       productIdOnStore: id,
-      adsetId: "Product ID / Banner ID",
-      userAgent: "유저의 User Agent",
+      adsetId: logOptions.adsetId,
+      userAgent: navigator.userAgent,
     },
   });
 };
@@ -66,7 +67,7 @@ const handleImpression = async (id) => {
  * - 관찰 대상의 50%가 뷰포트에 보이면 노출되었다고 봅니다.
  */
 const observePhotos = () => {
-  props.photos.forEach((photo, index) => {
+  props.adsProducts.suggestions.forEach((suggestion, index) => {
     const photoRef = photosRef.value[index];
     let intersectionTimer = null;
 
@@ -74,15 +75,24 @@ const observePhotos = () => {
       photoRef,
       ([{ isIntersecting }]) => {
         if (isIntersecting) {
-          intersectionTimer = setTimeout(() => {
-            if (isIntersecting && !impressionIds.value.has(photo.id)) {
-              handleImpression(photo.id).then(() => {
-                impressionIds.value.add(photo.id);
+          intersectionTimer = window.setTimeout(() => {
+            if (
+              isIntersecting &&
+              !impressionIds.value.has(suggestion.product.id)
+            ) {
+              handleImpression(
+                suggestion.product.id,
+                suggestion.logOptions
+              ).then(() => {
+                impressionIds.value.add(suggestion.product.id);
               });
             }
           }, INTERSECTION_TIMER);
         } else {
-          clearTimeout(intersectionTimer);
+          if (intersectionTimer !== null) {
+            clearTimeout(intersectionTimer);
+            intersectionTimer = null;
+          }
         }
       },
       {
@@ -102,14 +112,23 @@ onMounted(() => {
     id="photo-grid"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 w-full max-w-7xl mx-auto"
   >
+    <!-- Ads Products 렌더링 -->
     <div
-      v-for="photo in props.adsProducts.suggestions"
-      :id="`photo-${photo.id}`"
-      :key="photo.id"
+      v-for="suggestion in props.adsProducts.suggestions"
+      :key="suggestion.product.id"
       ref="photos"
       class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
     >
-      <PhotoCard :photo="photo" />
+      <AdsPhotoCard :photo="suggestion.product" />
+    </div>
+
+    <!-- Borybory Products 렌더링 -->
+    <div
+      v-for="product in props.boryboryProducts.content"
+      :key="product.id"
+      class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+    >
+      <BoryboryProductCard :product="product" />
     </div>
   </div>
 </template>

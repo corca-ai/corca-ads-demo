@@ -3,15 +3,17 @@ import { callWithNuxt, useNuxtApp } from "#app";
 import { definePageMeta, nextTick } from "#imports";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
+import { useRouter, useRoute } from "vue-router";
 
 // 보리보리와 동일하게, Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({
   middleware: [
     async (to) => {
       const nuxtApp = useNuxtApp();
-      const { data: photo } = await useFetchAdsSuggestion(
-        `photos/${to.params.id}`
-      );
+      const route = useRoute();
+      const { data: photo } = await useFetch(`products/${route.params.id}`, {
+        baseURL: "http://localhost:8080/api/",
+      });
       await callWithNuxt(nuxtApp, () => {
         nuxtApp.$requestData = photo.value;
       });

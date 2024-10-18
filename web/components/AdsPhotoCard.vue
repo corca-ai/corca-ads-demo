@@ -12,6 +12,8 @@ const props = defineProps({
   isLoaded: Boolean,
 });
 
+console.log(props.photo);
+
 // 상품을 클릭 시 Click 이벤트 API를 호출합니다.
 const handleClick = async () => {
   // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
@@ -31,15 +33,15 @@ const handleClick = async () => {
   <div>
     <div v-if="isLoaded">loading</div>
     <div v-else @click="handleClick">
-      <NuxtLink :to="`products/${props.photo.product.id}`">
+      <NuxtLink :to="`products/${props.photo.id}`">
         <img
-          :src="`${props.photo.product.image}`"
+          :src="`${props.photo.image}`"
           alt="Photo Avatar"
           width="500"
           height="500"
           class="mb-2"
         />
-        <div>{{ props.photo.product.name }}</div>
+        <div>{{ props.photo.name }}</div>
       </NuxtLink>
     </div>
   </div>
