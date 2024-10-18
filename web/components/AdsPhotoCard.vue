@@ -1,7 +1,7 @@
 <script setup>
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 const props = defineProps({
-  photo: {
+  product: {
     type: {
       id: Number,
       title: String,
@@ -9,21 +9,25 @@ const props = defineProps({
     },
     required: true,
   },
+  logOptions: {
+    type: {
+      requestId: String,
+      adsetId: String,
+    },
+    required: true,
+  },
   isLoaded: Boolean,
 });
-
-console.log(props.photo);
 
 // 상품을 클릭 시 Click 이벤트 API를 호출합니다.
 const handleClick = async () => {
   // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("click", {
     body: {
-      customerId: "click을 한 유저 id",
-      requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: "상품 id",
-      adsetId: "Product ID / Banner ID",
-      userAgent: "유저의 User Agent",
+      requestId: props.logOptions.requestId,
+      productIdOnStore: props.product.id,
+      adsetId: props.logOptions.adsetId,
+      userAgent: navigator.userAgent,
     },
   });
 };
@@ -33,15 +37,23 @@ const handleClick = async () => {
   <div>
     <div v-if="isLoaded">loading</div>
     <div v-else @click="handleClick">
-      <NuxtLink :to="`products/${props.photo.id}`">
+      <NuxtLink
+        :to="{
+          path: `products/${props.product.id}`,
+          query: {
+            requestId: props.logOptions.requestId,
+            adsetId: props.logOptions.adsetId,
+          },
+        }"
+      >
         <img
-          :src="`${props.photo.image}`"
-          alt="Photo Avatar"
+          :src="`${props.product.image}`"
+          alt="코르카 상품 이미지"
           width="500"
           height="500"
           class="mb-2"
         />
-        <div>{{ props.photo.name }}</div>
+        <div>{{ props.product.name }}</div>
       </NuxtLink>
     </div>
   </div>

@@ -119,7 +119,10 @@ onMounted(() => {
       ref="photos"
       class="w-full h-full bg-white p-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 hover:shadow-lg"
     >
-      <AdsPhotoCard :photo="suggestion.product" />
+      <AdsPhotoCard
+        :product="suggestion.product"
+        :logOptions="suggestion.logOptions"
+      />
     </div>
 
     <!-- Borybory Products 렌더링 -->
