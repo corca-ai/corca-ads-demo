@@ -2,6 +2,11 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0",
+    "yarn": "1.22.22"
+  },
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -12,6 +17,7 @@
   },
   "dependencies": {
     "@vueuse/core": "11.1.0",
+    "nanoid": "^5.0.7",
     "nuxt": "3.13.0",
     "vue": "latest",
     "vue-router": "latest"

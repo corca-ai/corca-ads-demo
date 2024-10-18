@@ -1,23 +1,46 @@
 <script setup>
-import PhotoGrid from "~/components/PhotoGrid.vue";
-import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
+import ProductGrid from "~/components/ProductGrid.vue";
+import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
 
-// 상품 리스트는 보리보리와 동일하게 CSR에서 데이터를 fetch합니다.
-const { data: photos, pending } = await useFetchAdsSuggestion("photos", {
-  server: false, // CSR fetch
-  params: {
-    _limit: 20,
-  },
-});
+const config = useRuntimeConfig();
+const storeId = config.public.storeId;
+
+const deviceId = useGlobalDeviceId();
+const sessionId = useGlobalSessionId();
+
+const { data: adsProducts, pending: adsPending } = await useFetch(
+  "corca-ads/products",
+  {
+    baseURL: "http://localhost:8080/api/",
+    server: false,
+    params: {
+      clientId: storeId,
+      placementId: "0eae4a71-a99f-44db-8aea-4a8d7e06fc41",
+      sessionId: sessionId,
+      deviceId: deviceId,
+    },
+  }
+);
+
+const { data: boryboryProducts, pending: boryboryPending } = useFetch(
+  "products",
+  {
+    baseURL: "http://localhost:8080/api/",
+    server: false,
+  }
+);
 </script>
 
 <template>
   <div className="w-full flex flex-col items-center gap-4 p-12 bg-gray-100">
-    <div v-if="pending">
+    <div v-if="adsPending || boryboryPending">
       <div>Loading...</div>
     </div>
     <div v-else>
-      <PhotoGrid :photos="photos" />
+      <ProductGrid
+        :adsProducts="adsProducts"
+        :boryboryProducts="boryboryProducts"
+      />
     </div>
   </div>
 </template>

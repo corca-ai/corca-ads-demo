@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      storeId: "7a5c6244-fb4b-4962-87d0-47e63bfee377", // TODO: 보리보리 계정 id 생기면 그걸로 변경
+      storeId: "7bbb703e-a30b-4a4a-91b4-c0a7d2303415",
     },
   },
   modules: ["@nuxtjs/tailwindcss"],

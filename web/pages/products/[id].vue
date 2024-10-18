@@ -2,44 +2,42 @@
 import { callWithNuxt, useNuxtApp } from "#app";
 import { definePageMeta, nextTick } from "#imports";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
-import { useFetchAdsSuggestion } from "~/composables/useFetchAdsSuggestion";
+import { nanoid } from "nanoid";
 
 // 보리보리와 동일하게, Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({
   middleware: [
     async (to) => {
       const nuxtApp = useNuxtApp();
-      const { data: photo } = await useFetchAdsSuggestion(
-        `photos/${to.params.id}`
-      );
+      const { data: productInfo } = await useFetch(`products/${to.params.id}`, {
+        baseURL: "http://localhost:8080/api/",
+      });
       await callWithNuxt(nuxtApp, () => {
-        nuxtApp.$requestData = photo.value;
+        nuxtApp.$requestData = productInfo.value;
       });
     },
   ],
 });
 
 const nuxtApp = useNuxtApp();
-const photo = ref(nuxtApp.$requestData);
+const productInfo = ref(nuxtApp.$requestData);
+const route = useRoute();
 
-// 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
+/**
+ * @description
+ * 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280bcafd8d97fdffdc9de
+ */
 onMounted(async () => {
-  /**
-   * @description
-   * onMounted 후 API 요청 시 API 호출이 안 되는 이슈가 있어, nextTick을 이용해 다음 이벤트 루프 때 실행되게끔 구현했습니다.
-   * 참고: https://stackoverflow.com/questions/76527094/nuxt-3-and-vue-3-onmounted-call-function-usefetch-function-not-getting-data-form
-   */
   await nextTick();
 
-  // TODO: 백엔드 API 완성되면 정상적인 필드값 전달
   await useAdsEventLogger("view", {
     body: {
-      customerId: "click을 한 유저 id",
-      requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: "상품 id",
-      adsetId: "Product ID / Banner ID",
-      categoryIdOnStore: "카테고리 ID",
-      userAgent: "유저의 User Agent",
+      requestId: route.query.requestId,
+      adsetId: route.query.adsetId,
+      productIdOnStore: productInfo.value.id,
+      userAgent: navigator.userAgent,
     },
   });
 });
@@ -48,18 +46,17 @@ onMounted(async () => {
  * @description
  * 장바구니 버튼 클릭시 호출할 함수
  * 코르카 Ads의 add-to-cart 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
  */
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
     body: {
-      customerId: "click을 한 유저 id",
-      requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: photo.value.id,
-      adsetId: "Product ID / Banner ID",
-      categoryIdOnStore: "카테고리 ID",
-      cartId: "장바구니 ID",
+      requestId: route.query.requestId,
+      adsetId: route.query.adsetId,
+      productIdOnStore: productInfo.value.id,
       quantity,
-      userAgent: "유저의 User Agent",
+      userAgent: navigator.userAgent,
     },
   });
 };
@@ -68,43 +65,47 @@ const handleAddToCart = async (quantity) => {
  * @description
  * 구매 버튼 클릭시 호출할 함수
  * 코르카 Ads의 purchase 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
  */
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
     body: {
-      customerId: "click을 한 유저 id",
-      requestId: "suggestion에서 받은 requestId",
-      productIdOnStore: photo.value.id,
-      adsetId: "Product ID / Banner ID",
-      categoryIdOnStore: "카테고리 ID",
-      cartId: "장바구니 ID",
+      requestId: route.query.requestId,
+      adsetId: route.query.adsetId,
+      productIdOnStore: productInfo.value.id,
       quantity,
-      userAgent: "유저의 User Agent",
+      orderId: nanoid(),
+      amount: productInfo.value.price * quantity,
+      userAgent: navigator.userAgent,
     },
   });
 };
 </script>
 
 <template>
-  <div class="flex items-center justify-center w-full h-screen p-8 bg-gray-100">
+  <div class="flex items-center justify-center w-full h-screen bg-gray-100">
     <div
-      class="flex flex-col items-center w-4/5 max-w-3xl bg-white p-6 rounded-lg shadow-md"
+      class="flex flex-col items-center w-1/3 bg-white p-6 rounded-lg shadow-md"
     >
       <img
-        :src="`${photo.url}`"
-        alt="Photo Avatar"
+        :src="`${productInfo.image}`"
+        alt="상품 상세 이미지"
         width="100%"
         height="100%"
         class="w-full mb-4 rounded-md"
       />
-      <div class="text-xl font-semibold mb-4">{{ photo.title }}</div>
+      <div class="text-xl font-semibold mb-4">{{ productInfo.name }}</div>
       <div class="flex gap-4">
         <NuxtLink
-          :to="{ path: '/cart', query: { productId: photo.id, quantity: 1 } }"
+          :to="{
+            path: '/cart',
+            query: { productId: productInfo.id, quantity: 1 },
+          }"
         >
           <button
             class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-            @click="handleAddToCart(quantity)"
+            @click="handleAddToCart(1)"
           >
             장바구니
           </button>
@@ -112,12 +113,12 @@ const handlePurchase = async (quantity) => {
         <NuxtLink
           :to="{
             path: '/purchase',
-            query: { productId: photo.id, quantity: 1 },
+            query: { productId: productInfo.id, quantity: 1 },
           }"
         >
           <button
             class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-            @click="handlePurchase(quantity)"
+            @click="handlePurchase(1)"
           >
             구매
           </button>

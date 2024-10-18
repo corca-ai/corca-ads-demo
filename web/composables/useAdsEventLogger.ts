@@ -1,3 +1,4 @@
+import { useFetch } from "#app";
 import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
 
 /**
