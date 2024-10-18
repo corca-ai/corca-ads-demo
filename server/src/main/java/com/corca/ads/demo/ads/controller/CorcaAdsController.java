@@ -1,7 +1,7 @@
 package com.corca.ads.demo.ads.controller;
 
 import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
-import com.corca.ads.demo.ads.dto.CorcaAdsRequestDTO;
+import com.corca.ads.demo.ads.dto.CorcaAdsProductRequestDTO;
 import com.corca.ads.demo.ads.service.CorcaAdsService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,7 +49,7 @@ public class CorcaAdsController {
       content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
   public CompletableFuture<ResponseEntity<CorcaAdsProductResponseDTO>> getCorcaAdsProducts(
       @Parameter(description = "Corca Ads 요청 파라미터", schema = @Schema(
-          implementation = CorcaAdsRequestDTO.class)) @RequestParam Map<String, String> params) {
+          implementation = CorcaAdsProductRequestDTO.class)) @RequestParam Map<String, String> params) {
     String placementId = params.get("placementId");
     String sessionId = params.get("sessionId");
     String deviceId = params.get("deviceId");
