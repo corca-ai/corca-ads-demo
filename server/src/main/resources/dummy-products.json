@@ -3,7 +3,7 @@
     "id": "1167720",
     "name": "여성 화이트 블라우스",
     "price": 45000,
-    "discount_price": 31500,
+    "discountPrice": 31500,
     "image": "https://cdn.adcio.ai/demo/products/1167720.jpg",
     "summary": "This elegant white blouse is perfect for a stylish and sophisticated look. Made with intricate lace details, it pairs beautifully with jeans or skirts. The blouse features a comfortable fit and a classic design, suitable for various occasions."
   },
@@ -11,7 +11,7 @@
     "id": "1190814",
     "name": "기본 블랙 티셔츠",
     "price": 30000,
-    "discount_price": 30000,
+    "discountPrice": 30000,
     "image": "https://cdn.adcio.ai/demo/products/1190814.jpg",
     "summary": "This is a basic black short-sleeved t-shirt suitable for casual wear. It pairs well with a variety of outfits and is made from a comfortable, stretchy material. Ideal for everyday use and versatile enough for different occasions."
   },
@@ -19,7 +19,7 @@
     "id": "1302209",
     "name": "도트 슬리브리스와 와이드 팬츠 세트",
     "price": 72000,
-    "discount_price": 72000,
+    "discountPrice": 72000,
     "image": "https://cdn.adcio.ai/demo/products/1302209.jpg",
     "summary": "This outfit features a chic, beige polka-dot sleeveless top paired with comfortable, wide-leg trousers. Perfect for a casual yet stylish look during warmer seasons. The light and breathable fabric ensures all-day comfort."
   },
@@ -27,7 +27,7 @@
     "id": "1309108",
     "name": "청 롱 스커트",
     "price": 35000,
-    "discount_price": 28000,
+    "discountPrice": 28000,
     "image": "https://cdn.adcio.ai/demo/products/1309108.jpg",
     "summary": "A stylish blue denim long skirt with a simple cut, perfect for casual outings. The skirt features a comfortable fit, making it ideal for everyday wear. Pair it with sneakers for a relaxed look."
   },
@@ -35,7 +35,7 @@
     "id": "1345519",
     "name": "긴팔 캐주얼 원피스",
     "price": 39000,
-    "discount_price": 39000,
+    "discountPrice": 39000,
     "image": "https://cdn.adcio.ai/demo/products/1345519.jpg",
     "summary": "Comfortable long-sleeve casual dress in brown. Made with soft material, perfect for everyday wear. Ideal for a relaxed and cozy look."
   },
@@ -43,7 +43,7 @@
     "id": "325743",
     "name": "라이트 블루 데님 반바지",
     "price": 28000,
-    "discount_price": 22400,
+    "discountPrice": 22400,
     "image": "https://cdn.adcio.ai/demo/products/325743.jpg",
     "summary": "Comfortable light blue denim shorts designed with an elastic waistband and spacious pockets. Perfect for casual outings and warm weather. Pair it with your favorite top and sneakers for a relaxed look."
   },
@@ -51,7 +51,7 @@
     "id": "348048",
     "name": "여성용 루즈핏 니트 스웨터",
     "price": 45000,
-    "discount_price": 31500,
+    "discountPrice": 31500,
     "image": "https://cdn.adcio.ai/demo/products/348048.jpg",
     "summary": "This is a stylish loose-fitting knit sweater designed for women. It features a dark gray color with delicate lace detail around the sleeves. The high-neck design adds an extra layer of warmth and elegance. Perfect for casual wear and can be paired with jeans or leggings for a chic look."
   },
@@ -59,7 +59,7 @@
     "id": "538904",
     "name": "민소매 블라우스",
     "price": 28000,
-    "discount_price": 28000,
+    "discountPrice": 28000,
     "image": "https://cdn.adcio.ai/demo/products/538904.jpg",
     "summary": "This stylish sleeveless blouse is perfect for summer wear. It features a flowy design with a comfortable fit and a modern blue color. Ideal for casual outings or semi-formal occasions, it pairs well with a variety of bottoms."
   },
@@ -67,7 +67,7 @@
     "id": "662293",
     "name": "플로랄 롱 원피스",
     "price": 50000,
-    "discount_price": 50000,
+    "discountPrice": 50000,
     "image": "https://cdn.adcio.ai/demo/products/662293.jpg",
     "summary": "This is a stylish long dress with a floral pattern, featuring long sleeves and a flowy skirt. It's perfect for casual outings and can be paired with heels or flats for a chic look."
   },
@@ -75,7 +75,7 @@
     "id": "705713",
     "name": "핑크 버튼 원피스",
     "price": 45000,
-    "discount_price": 45000,
+    "discountPrice": 45000,
     "image": "https://cdn.adcio.ai/demo/products/705713.jpg",
     "summary": "This elegant pink dress features a V-neckline and short sleeves. It has a button-down front with a flared bottom, providing both comfort and style. It's perfect for casual outings and warm weather."
   },
@@ -83,7 +83,7 @@
     "id": "459165",
     "name": "블랙 레이스 칼라 원피스",
     "price": 45000,
-    "discount_price": 45000,
+    "discountPrice": 45000,
     "image": "https://cdn.adcio.ai/demo/products/459165.jpg",
     "summary": "This elegant black dress features a delicate white lace collar, short sleeves, and a ruffled hem, offering a stylish and sophisticated look perfect for any occasion."
   },
@@ -91,7 +91,7 @@
     "id": "72006",
     "name": "클래식 블랙 트위드 세트",
     "price": 85000,
-    "discount_price": 85000,
+    "discountPrice": 85000,
     "image": "https://cdn.adcio.ai/demo/products/72006.jpg",
     "summary": "This elegant set features a black tweed jacket with white cuffs and collar, paired with a matching black skirt. The jacket is accentuated by large buttons and the outfit exudes a classic, sophisticated style. Ideal for formal settings and chic events, it combines timeless design with modern touches. The matching handbag and accessories complete the refined look."
   },
@@ -99,7 +99,7 @@
     "id": "621591",
     "name": "스트라이프 패턴 셔츠",
     "price": 30000,
-    "discount_price": 30000,
+    "discountPrice": 30000,
     "image": "https://cdn.adcio.ai/demo/products/621591.jpg",
     "summary": "This blue striped pattern shirt features a relaxed fit with a pleat detail at the back. The 3/4 sleeves and classic collar make it perfect for a casual yet stylish look."
   },
@@ -107,7 +107,7 @@
     "id": "456143",
     "name": "베이지 플리츠 헴드 드레스",
     "price": 45000,
-    "discount_price": 31500,
+    "discountPrice": 31500,
     "image": "https://cdn.adcio.ai/demo/products/456143.jpg",
     "summary": "Elegant beige dress featuring pleated hem and flared sleeves. Perfect for formal or casual occasions, providing a chic and classy look."
   },
@@ -115,7 +115,7 @@
     "id": "34779",
     "name": "블랙 와이드 팬츠",
     "price": 45000,
-    "discount_price": 45000,
+    "discountPrice": 45000,
     "image": "https://cdn.adcio.ai/demo/products/34779.jpg",
     "summary": "These black wide-leg pants are designed for comfort and style. Suitable for casual and semi-formal occasions, they offer a relaxed fit that pairs well with various tops. The pants are perfect for everyday wear, providing a chic and modern look."
   },
@@ -123,7 +123,7 @@
     "id": "1102476",
     "name": "심플 블랙 티셔츠",
     "price": 35000,
-    "discount_price": 35000,
+    "discountPrice": 35000,
     "image": "https://cdn.adcio.ai/demo/products/1102476.jpg",
     "summary": "This casual black long-sleeved t-shirt offers a simple and timeless look. It's versatile and perfect for everyday wear. Made from comfortable material, it can be paired with a variety of outfits for an effortless style."
   },
@@ -131,7 +131,7 @@
     "id": "708237",
     "name": "넥 퍼 파카",
     "price": 120000,
-    "discount_price": 84000,
+    "discountPrice": 84000,
     "image": "https://cdn.adcio.ai/demo/products/708237.jpg",
     "summary": "This stylish black parka features a luxurious fur trim around the collar, perfect for keeping warm in cold weather. The coat has a relaxed fit, with a drawstring waist for adjustable comfort and large front pockets for convenience. Pair it with jeans and sneakers for a chic, casual look."
   },
@@ -139,7 +139,7 @@
     "id": "222829",
     "name": "레드 미니 드레스",
     "price": 45000,
-    "discount_price": 45000,
+    "discountPrice": 45000,
     "image": "https://cdn.adcio.ai/demo/products/222829.jpg",
     "summary": "A chic red mini dress featuring short sleeves and a stylish collar. Ideal for casual outings or semi-formal occasions. Pair with heels for a sophisticated look."
   },
@@ -147,7 +147,7 @@
     "id": "214121",
     "name": "데님 셔츠 원피스",
     "price": 55000,
-    "discount_price": 55000,
+    "discountPrice": 55000,
     "image": "https://cdn.adcio.ai/demo/products/214121.jpg",
     "summary": "A stylish blue denim dress featuring long sleeves, a button-down front, and a belted waist. The front chest pockets and classic collar add a chic, casual touch. Perfect for a comfortable yet fashionable look."
   },
@@ -155,7 +155,7 @@
     "id": "180011",
     "name": "루즈핏 브라운 셔츠",
     "price": 49000,
-    "discount_price": 49000,
+    "discountPrice": 49000,
     "image": "https://cdn.adcio.ai/demo/products/180011.jpg",
     "summary": "This loose-fit shirt features a stylish and comfortable brown design. It has a unique button detail and long sleeves with cinched cuffs. Perfect for a casual yet chic look."
   }

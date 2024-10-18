@@ -12,5 +12,8 @@ public class ProductDTO {
   private String id;
   private String name;
   private double price;
-  // todo: define extra fields
+  private double discountPrice;
+  private String image;
+  private String summary;
+  // todo: define extra fields for boribori product schema
 }

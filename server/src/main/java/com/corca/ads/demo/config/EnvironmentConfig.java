@@ -14,11 +14,6 @@ public class EnvironmentConfig {
   }
 
   @Bean
-  public String corcaAdsApiKey() {
-    return env.getProperty("corca.ads.api.key");
-  }
-
-  @Bean
   public String corcaAdsClientId() {
     return env.getProperty("corca.ads.api.client.id");
   }
