@@ -27,7 +27,7 @@ const route = useRoute();
  * @description
  * 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280bcafd8d97fdffdc9de
+ * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea281e789c5f8c6a0d284e4
  */
 onMounted(async () => {
   await nextTick();
@@ -47,7 +47,7 @@ onMounted(async () => {
  * 장바구니 버튼 클릭시 호출할 함수
  * 코르카 Ads의 add-to-cart 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
+ * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea281adbdc1c3d35164e5dd
  */
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
@@ -66,7 +66,7 @@ const handleAddToCart = async (quantity) => {
  * 구매 버튼 클릭시 호출할 함수
  * 코르카 Ads의 purchase 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
+ * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea2811c87fbf2b89910a2da
  */
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {

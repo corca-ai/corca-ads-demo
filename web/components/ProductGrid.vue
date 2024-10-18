@@ -17,7 +17,7 @@ const impressionIds = ref(new Set());
  * 노출 버튼 클릭시 호출할 함수
  * 코르카 Ads의 impression 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
+ * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea28126a2d4caa5f185f3eb
  */
 const handleImpression = async (id, logOptions) => {
   await useAdsEventLogger("impression", {
