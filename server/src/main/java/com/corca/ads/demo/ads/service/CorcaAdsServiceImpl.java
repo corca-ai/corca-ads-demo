@@ -41,11 +41,10 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   /**
    * 지정된 매개변수로 새 CorcaAdsServiceImpl을 생성합니다.
    *
-   * @param corcaAdsApiKey Corca Ads API에 접근하기 위한 API 키
    * @param corcaAdsClientId Corca Ads 서비스의 클라이언트 ID
    */
-  public CorcaAdsServiceImpl(String corcaAdsApiKey, String corcaAdsClientId,
-      RestTemplate restTemplate, ProductService productService, ObjectMapper objectMapper) {
+  public CorcaAdsServiceImpl(String corcaAdsClientId, RestTemplate restTemplate,
+      ProductService productService, ObjectMapper objectMapper) {
     this.corcaAdsClientId = corcaAdsClientId;
     this.restTemplate = restTemplate;
     this.productService = productService;
