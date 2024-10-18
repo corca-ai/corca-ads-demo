@@ -11,8 +11,8 @@ const handleClick = async () => {
   await useAdsEventLogger("click", {
     body: {
       requestId: props.logOptions.requestId,
-      productIdOnStore: props.product.id,
       adsetId: props.logOptions.adsetId,
+      productIdOnStore: props.product.id,
       userAgent: navigator.userAgent,
     },
   });
