@@ -23,13 +23,13 @@ const nuxtApp = useNuxtApp();
 const productInfo = ref(nuxtApp.$requestData);
 const route = useRoute();
 
-// 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
+/**
+ * @description
+ * 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280bcafd8d97fdffdc9de
+ */
 onMounted(async () => {
-  /**
-   * @description
-   * onMounted 후 API 요청 시 API 호출이 안 되는 이슈가 있어, nextTick을 이용해 다음 이벤트 루프 때 실행되게끔 구현했습니다.
-   * 참고: https://stackoverflow.com/questions/76527094/nuxt-3-and-vue-3-onmounted-call-function-usefetch-function-not-getting-data-form
-   */
   await nextTick();
 
   await useAdsEventLogger("view", {
@@ -46,6 +46,8 @@ onMounted(async () => {
  * @description
  * 장바구니 버튼 클릭시 호출할 함수
  * 코르카 Ads의 add-to-cart 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
  */
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
@@ -63,6 +65,8 @@ const handleAddToCart = async (quantity) => {
  * @description
  * 구매 버튼 클릭시 호출할 함수
  * 코르카 Ads의 purchase 이벤트 로깅 API를 호출합니다.
+ *
+ * API 설명: https://www.notion.so/corcaai/WIP-Corca-Ads-API-11bdd8f2aea28060ad66e4c0108ef396?pvs=4#120dd8f2aea280f9a8a4c494cc70b36c
  */
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
