@@ -1,0 +1,11 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY ../server/ .
+
+RUN ./gradlew build -x test
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "build/libs/corca-ads-demo-server-0.0.1-SNAPSHOT.jar"]

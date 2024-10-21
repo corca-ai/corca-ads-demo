@@ -1,0 +1,15 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+RUN apk add --no-cache git
+
+RUN yarn set version 1.22.22
+
+COPY ../web/ .
+
+RUN yarn install
+
+EXPOSE 3000
+
+CMD ["yarn", "run", "dev"]
