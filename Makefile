@@ -9,5 +9,5 @@ run-demo: set-permissions
 	@docker/run-demo.sh
 
 clear:
-	@echo "$(GREEN)Clearing project-related Docker resources...$(NC)"
+	@echo "$(GREEN)Clearing project-related Docker resources..."
 	@docker-compose -f docker/docker-compose.yml down --rmi local
