@@ -35,6 +35,9 @@
    http://localhost:3000   # in your browser
    ```
 
+   ![image](https://github.com/user-attachments/assets/72fbbeb4-15e7-4ab5-830e-325ddea00d02)
+
+
 4. If you need to reset the Docker env, use:
    ```shell
    $ make clear
