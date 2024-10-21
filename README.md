@@ -1,7 +1,5 @@
 # Corca Ads Demo
 
-</br>
-
 ### This project contains two main components:
 
 - `server/`: Spring Boot backend
@@ -26,6 +24,18 @@
    ```
 
 2. Build and run the Demo Project:
+
    ```shell
    $ make run-demo
+   ```
+
+3. Access the Web application:
+
+   ```shell
+   http://localhost:3000   # in your browser
+   ```
+
+4. If you need to reset the Docker env, use:
+   ```shell
+   $ make clear
    ```
