@@ -15,10 +15,10 @@ public class ProductDTO {
    * !SECTION
    * 상품에 필요한 추가 정보 예시
    */
-  // private String name;
-  // private double price;
-  // private double discountPrice;
-  // private String image;
-  // private String summary;
+  private String name;
+  private double price;
+  private double discountPrice;
+  private String image;
+  private String summary;
   // todo: define extra fields for boribori product schema
 }
