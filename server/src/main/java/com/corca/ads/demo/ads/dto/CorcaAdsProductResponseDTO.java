@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,7 +17,7 @@ import java.util.List;
 @Schema(description = "Corca Ads 상품 응답 DTO")
 public class CorcaAdsProductResponseDTO {
   @Schema(description = "광고 상품 목록")
-  private List<SuggestionDTO> suggestions;
+  private List<SuggestionDTO> suggestions = new ArrayList<>();
 
   @Schema(description = "광고 지면 정보")
   private PlacementDTO placement;

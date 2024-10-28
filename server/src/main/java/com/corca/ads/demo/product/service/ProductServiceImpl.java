@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * ProductService 인터페이스의 구현체입니다. 이 서비스는 상품 데이터를 가져오기 위한 역할을 담당하며 Corca Ads API와의 연동과는 관련이 없습니다.
+ * ProductService 인터페이스의 구현체입니다. 이 서비스는 상품 데이터를 가져오기 위한 역할을 담당하며 Corca Ads API와의
+ * 연동과는 관련이 없습니다.
  */
 @Slf4j
 @Service
@@ -31,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public ProductDTO getProduct(String productId) {
     log.info("Fetching product details for product ID: {}", productId);
+    log.info("Product list: {}", products.size());
 
     return products.stream().filter(product -> product.getId().equals(productId)).findFirst()
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,

@@ -13,7 +13,7 @@ public class ProductDTO {
 
   /**
    * !SECTION
-   * 상품에 필요한 추가 정보 예시
+   * 데모 시연을 위한 예시 필드
    */
   private String name;
   private double price;
