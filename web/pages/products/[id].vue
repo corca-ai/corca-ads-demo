@@ -32,11 +32,10 @@ const route = useRoute();
 onMounted(async () => {
   await nextTick();
 
-  await useAdsEventLogger("view", {
+  await useAdsEventLogger("page-view/product-detail", {
     body: {
-      requestId: route.query.requestId,
-      adsetId: route.query.adsetId,
-      productIdOnStore: productInfo.value.id,
+      // productId: route.query.productId,
+      productId: productInfo.value.id,
       userAgent: navigator.userAgent,
     },
   });
@@ -52,9 +51,7 @@ onMounted(async () => {
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
     body: {
-      requestId: route.query.requestId,
-      adsetId: route.query.adsetId,
-      productIdOnStore: productInfo.value.id,
+      productId: route.query.productId,
       quantity,
       userAgent: navigator.userAgent,
     },
@@ -71,11 +68,13 @@ const handleAddToCart = async (quantity) => {
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
     body: {
-      requestId: route.query.requestId,
-      adsetId: route.query.adsetId,
-      productIdOnStore: productInfo.value.id,
-      quantity,
       orderId: nanoid(),
+      items: [
+        {
+          productId: productInfo.value.id,
+          quantity,
+        },
+      ],
       amount: productInfo.value.price * quantity,
       userAgent: navigator.userAgent,
     },
