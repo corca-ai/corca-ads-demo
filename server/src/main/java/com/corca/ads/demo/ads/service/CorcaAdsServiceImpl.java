@@ -82,6 +82,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
       log.info("Successfully fetched products from Corca Ads for placement: {}", placementId);
 
       CorcaAdsProductResponseDTO result = parseResponse(response.getBody());
+      log.info("Parsed Corca Ads response: {}", result);
 
       return CompletableFuture.completedFuture(result);
     } catch (HttpClientErrorException | HttpServerErrorException e) {
@@ -89,6 +90,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
       throw e;
     } catch (Exception e) {
       log.error("Error fetching products from Corca Ads", e);
+      e.printStackTrace();
       throw new CorcaAdsApiException("Failed to fetch products from Corca Ads", e);
     }
   }
@@ -127,7 +129,6 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   private CorcaAdsProductResponseDTO.SuggestionDTO parseSuggestion(JsonNode suggestionNode) {
     CorcaAdsProductResponseDTO.SuggestionDTO suggestionDTO =
         new CorcaAdsProductResponseDTO.SuggestionDTO();
-
     String productId = suggestionNode.path("product").path("id").asText();
 
     suggestionDTO.setProduct(productService.getProduct(productId));
