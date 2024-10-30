@@ -19,11 +19,10 @@ const impressionIds = ref(new Set());
  *
  * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea28126a2d4caa5f185f3eb
  */
-const handleImpression = async (id, logOptions) => {
+const handleImpression = async (logOptions) => {
   await useAdsEventLogger("impression", {
     body: {
       requestId: logOptions.requestId,
-      productIdOnStore: id,
       adsetId: logOptions.adsetId,
       userAgent: navigator.userAgent,
     },
@@ -50,10 +49,7 @@ const observeAdsProducts = () => {
               isIntersecting &&
               !impressionIds.value.has(suggestion.product.id)
             ) {
-              handleImpression(
-                suggestion.product.id,
-                suggestion.logOptions
-              ).then(() => {
+              handleImpression(suggestion.logOptions).then(() => {
                 impressionIds.value.add(suggestion.product.id);
               });
             }

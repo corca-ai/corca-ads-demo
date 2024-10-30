@@ -26,8 +26,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * CorcaAdsService 인터페이스의 구현체입니다.
- * 이 서비스는 광고 상품을 가져오기 위해 Corca Ads API와 상호 작용하는 역할을 담당합니다.
+ * CorcaAdsService 인터페이스의 구현체입니다. 이 서비스는 광고 상품을 가져오기 위해 Corca Ads API와 상호 작용하는 역할을 담당합니다.
  */
 @Slf4j
 @Service
@@ -56,13 +55,11 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
    * Web으로부터 받은 매개 변수를 기반으로 Corca Ads API에서 광고 상품을 가져옵니다.
    *
    * @param placementId 광고가 송출 될 지면의 ID
-   * @param sessionId   엔드 유저의 세션 ID
-   * @param deviceId    엔드 유저의 기기 ID
-   * @param customerId  스토어에서 엔드 유저를 식별하기 위한 ID (스토어가 원하지 않거나, 로그인하지 않은 사용자의 경우
-   *                    null일 수 있음)
-   * @param userAgent   엔드 유저 브라우저의 User-Agent 헤더 정보
-   * @return 가져온 광고 상품들과 지면 정보, 엔드 유저 이벤트 로그 수집을 위한 값을 반환
-   *         CorcaAdsProductResponseDTO
+   * @param sessionId 엔드 유저의 세션 ID
+   * @param deviceId 엔드 유저의 기기 ID
+   * @param customerId 스토어에서 엔드 유저를 식별하기 위한 ID (스토어가 원하지 않거나, 로그인하지 않은 사용자의 경우 null일 수 있음)
+   * @param userAgent 엔드 유저 브라우저의 User-Agent 헤더 정보
+   * @return 가져온 광고 상품들과 지면 정보, 엔드 유저 이벤트 로그 수집을 위한 값을 반환 CorcaAdsProductResponseDTO
    * @throws CorcaAdsApiException 상품을 가져오는 동안 오류가 발생한 경우
    */
   @Async
@@ -79,7 +76,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
     String url = corcaAdsApiUrl + "/v1/advertisements/products";
 
     try {
-      ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+      ResponseEntity<String> response =
+          restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
       log.info("Successfully fetched products from Corca Ads for placement: {}", placementId);
 
@@ -121,8 +119,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   }
 
   /**
-   * Corca Ads API 응답에서 제안된 광고 상품 정보를 파싱하여
-   * CorcaAdsProductResponseDTO.SuggestionDTO 객체로 변환합니다.
+   * Corca Ads API 응답에서 제안된 광고 상품 정보를 파싱하여 CorcaAdsProductResponseDTO.SuggestionDTO 객체로 변환합니다.
    * 
    * API에서는 상품의 ID만을 제공하므로, 필요한 상품 정보를 추가로 가져와야 합니다.
    *
@@ -130,7 +127,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
    * @return CorcaAdsProductResponseDTO.SuggestionDTO 객체
    */
   private CorcaAdsProductResponseDTO.SuggestionDTO parseSuggestion(JsonNode suggestionNode) {
-    CorcaAdsProductResponseDTO.SuggestionDTO suggestionDTO = new CorcaAdsProductResponseDTO.SuggestionDTO();
+    CorcaAdsProductResponseDTO.SuggestionDTO suggestionDTO =
+        new CorcaAdsProductResponseDTO.SuggestionDTO();
     String productId = suggestionNode.path("product").path("id").asText();
 
     suggestionDTO.setProduct(productService.getProduct(productId));
@@ -140,7 +138,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   }
 
   private CorcaAdsProductResponseDTO.LogOptionsDTO parseLogOptions(JsonNode logOptionsNode) {
-    CorcaAdsProductResponseDTO.LogOptionsDTO logOptionsDTO = new CorcaAdsProductResponseDTO.LogOptionsDTO();
+    CorcaAdsProductResponseDTO.LogOptionsDTO logOptionsDTO =
+        new CorcaAdsProductResponseDTO.LogOptionsDTO();
 
     logOptionsDTO.setRequestId(logOptionsNode.path("requestId").asText());
     logOptionsDTO.setAdsetId(logOptionsNode.path("adsetId").asText());
@@ -149,7 +148,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   }
 
   private CorcaAdsProductResponseDTO.PlacementDTO parsePlacement(JsonNode placementNode) {
-    CorcaAdsProductResponseDTO.PlacementDTO placementDTO = new CorcaAdsProductResponseDTO.PlacementDTO();
+    CorcaAdsProductResponseDTO.PlacementDTO placementDTO =
+        new CorcaAdsProductResponseDTO.PlacementDTO();
 
     placementDTO.setId(placementNode.path("id").asText());
     placementDTO.setTitle(placementNode.path("title").asText());
