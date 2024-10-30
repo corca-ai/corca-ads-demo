@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class CorcaAdsServiceImpl implements CorcaAdsService {
 
-  private final String corcaAdsApiUrl = "https://api.adcio.ai";
+  private final String corcaAdsApiUrl = "https://api.ads.corca.dev";
   private final String corcaAdsClientId;
   private final RestTemplate restTemplate;
   private final ProductService productService;
@@ -127,8 +127,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
   private CorcaAdsProductResponseDTO.SuggestionDTO parseSuggestion(JsonNode suggestionNode) {
     CorcaAdsProductResponseDTO.SuggestionDTO suggestionDTO =
         new CorcaAdsProductResponseDTO.SuggestionDTO();
-    // TODO: idOnStore에서 api 응답 스키마 변경 후 id로 변경
-    String productId = suggestionNode.path("product").path("idOnStore").asText();
+
+    String productId = suggestionNode.path("product").path("id").asText();
 
     suggestionDTO.setProduct(productService.getProduct(productId));
     suggestionDTO.setLogOptions(parseLogOptions(suggestionNode.path("logOptions")));
