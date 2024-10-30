@@ -22,7 +22,7 @@ export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
 
   return useFetch(request, {
     ...opts,
-    baseURL: "https://receiver.adcio.ai/events/",
+    baseURL: "https://receiver.corca.dev/v1/events/",
     method: "post",
     server: false,
     body: {

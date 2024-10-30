@@ -14,7 +14,6 @@ const handleClick = async () => {
     body: {
       requestId: props.logOptions.requestId,
       adsetId: props.logOptions.adsetId,
-      productIdOnStore: props.product.id,
       userAgent: navigator.userAgent,
     },
   });
@@ -33,8 +32,7 @@ const handleClick = async () => {
         :to="{
           path: `products/${props.product.id}`,
           query: {
-            requestId: props.logOptions.requestId,
-            adsetId: props.logOptions.adsetId,
+            productId: props.product.id,
           },
         }"
       >
