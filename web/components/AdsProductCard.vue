@@ -7,7 +7,7 @@ const props = defineProps(["product", "logOptions"]);
  * 상품을 클릭 시 호출할 함수
  * 코르카 Ads의 click 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea28131be86ca6f35662e61
+ * API 설명: https://corcaai.notion.site/123dd8f2aea280fd862dff19637510ba#123dd8f2aea28131be86ca6f35662e61
  */
 const handleClick = async () => {
   await useAdsEventLogger("click", {
