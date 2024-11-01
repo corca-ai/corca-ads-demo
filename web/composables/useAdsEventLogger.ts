@@ -5,7 +5,7 @@ import { useGlobalDeviceId, useGlobalSessionId } from "~/store/ads";
  * @description
  * 코르카 Ads의 이벤트 로깅 API를 호출하는 데 사용되는 컴포저블 함수입니다.
  * 이벤트 로깅 시 `storeId`, `deviceId`, `sessionId`는 필수로 요청 DTO에 포함되어야 합니다.
- * - 이벤트 로깅 API 주소: https://receiver.adcio.ai/events/
+ * - 이벤트 로깅 API 주소: https://receiver.corca.dev/v1/events/{$event-type}
  */
 export const useAdsEventLogger: typeof useFetch = (request, opts?) => {
   const config = useRuntimeConfig();

@@ -4,7 +4,7 @@ import { definePageMeta, nextTick } from "#imports";
 import { useAdsEventLogger } from "~/composables/useAdsEventLogger";
 import { nanoid } from "nanoid";
 
-// 보리보리와 동일하게, Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
+// Nuxt의 미들웨어를 사용하여 SSR에서 상품 디테일 데이터를 fetch합니다.
 definePageMeta({
   middleware: [
     async (to) => {
@@ -25,16 +25,16 @@ const route = useRoute();
 
 /**
  * @description
- * 페이지가 마운트되면 코르카 ads의 view 이벤트 로깅 API를 호출합니다.
+ * 상품 상세 페이지가 마운트되면 코르카 ads의 page-view 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea281e789c5f8c6a0d284e4
+ * API 설명: https://corcaai.notion.site/123dd8f2aea280fd862dff19637510ba?pvs=25#123dd8f2aea281e789c5f8c6a0d284e4
  */
 onMounted(async () => {
   await nextTick();
 
   await useAdsEventLogger("page-view/product-detail", {
     body: {
-      // productId: route.query.productId,
+      // productId: route.query.productId,  
       productId: productInfo.value.id,
       userAgent: navigator.userAgent,
     },
@@ -46,7 +46,7 @@ onMounted(async () => {
  * 장바구니 버튼 클릭시 호출할 함수
  * 코르카 Ads의 add-to-cart 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea281adbdc1c3d35164e5dd
+ * API 설명: https://corcaai.notion.site/123dd8f2aea280fd862dff19637510ba#123dd8f2aea281adbdc1c3d35164e5dd
  */
 const handleAddToCart = async (quantity) => {
   await useAdsEventLogger("add-to-cart", {
@@ -63,7 +63,7 @@ const handleAddToCart = async (quantity) => {
  * 구매 버튼 클릭시 호출할 함수
  * 코르카 Ads의 purchase 이벤트 로깅 API를 호출합니다.
  *
- * API 설명: https://www.notion.so/corcaai/123dd8f2aea280fd862dff19637510ba?pvs=4#123dd8f2aea2811c87fbf2b89910a2da
+ * API 설명: https://corcaai.notion.site/123dd8f2aea280fd862dff19637510ba#123dd8f2aea2811c87fbf2b89910a2da
  */
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
