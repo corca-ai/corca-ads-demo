@@ -68,7 +68,6 @@ const handleAddToCart = async (quantity) => {
 const handlePurchase = async (quantity) => {
   await useAdsEventLogger("purchase", {
     body: {
-      orderId: nanoid(),
       items: [
         {
           productId: productInfo.value.id,
