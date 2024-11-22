@@ -1,8 +1,8 @@
-package com.corca.ads.demo.ads.controller;
+package com.corca.ads.demo.corca.ads.controller;
 
-import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
-import com.corca.ads.demo.ads.dto.CorcaAdsProductRequestDTO;
-import com.corca.ads.demo.ads.service.CorcaAdsService;
+import com.corca.ads.demo.corca.ads.dto.CorcaAdsProductRequestDTO;
+import com.corca.ads.demo.corca.ads.dto.CorcaAdsProductResponseDTO;
+import com.corca.ads.demo.corca.ads.service.CorcaAdsService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,8 +21,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Corca Ads 관련 API 요청을 처리하는 컨트롤러입니다.
- * 이 컨트롤러는 광고 상품을 가져오기 위한 엔드포인트를 제공합니다.
+ * Corca Ads 관련 API 요청을 처리하는 컨트롤러입니다. 이 컨트롤러는 광고 상품을 가져오기 위한 엔드포인트를 제공합니다.
  */
 @RestController
 @Tag(name = "Corca Ads", description = "Corca Ads에서 광고 상품을 가져오는 데 사용되는 API")
@@ -40,15 +39,17 @@ public class CorcaAdsController {
    * 
    * 📍 참고: 데모에서는 실제 DB 대신 더미 JSON 파일에서 상품 데이터를 조회하여 맵핑합니다.
    *
-   * @param params placementId, sessionId, deviceId, customerId, userAgent를 포함한 요청
-   *               매개변수 맵
+   * @param params placementId, sessionId, deviceId, customerId, userAgent를 포함한 요청 매개변수 맵
    * @return 가져온 상품 광고가 포함된 CorcaAdsProductResponseDTO를 담은 ResponseEntity
    */
   @GetMapping("/products")
-  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다.", description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
-  @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
+  @Operation(summary = "Corca Ads를 통해 광고 상품을 가져옵니다.",
+      description = "제공된 매개변수에 따라 제안된 광고 상품을 반환합니다.")
+  @ApiResponse(responseCode = "200", description = "Success",
+      content = @Content(schema = @Schema(implementation = CorcaAdsProductResponseDTO.class)))
   public CompletableFuture<ResponseEntity<CorcaAdsProductResponseDTO>> getCorcaAdsProducts(
-      @Parameter(description = "Corca Ads 요청 파라미터", schema = @Schema(implementation = CorcaAdsProductRequestDTO.class)) @RequestParam Map<String, String> params) {
+      @Parameter(description = "Corca Ads 요청 파라미터", schema = @Schema(
+          implementation = CorcaAdsProductRequestDTO.class)) @RequestParam Map<String, String> params) {
     String placementId = params.get("placementId");
     String sessionId = params.get("sessionId");
     String deviceId = params.get("deviceId");

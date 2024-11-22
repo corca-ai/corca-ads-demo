@@ -30,12 +30,13 @@
 
    ```shell
    $ make run-demo
+
+   # server api specification -> http://localhost:8080/swagger-ui/index.html
    ```
 
    ![image](https://github.com/user-attachments/assets/0790ad37-6922-4642-9d31-5ca3d14e5696)
 
-
-4. 웹 애플리케이션 접속:
+3. 웹 애플리케이션 접속:
 
    ```shell
    http://localhost:3000   # 웹 브라우저에서 url 접속
@@ -43,7 +44,7 @@
 
    ![image](https://github.com/user-attachments/assets/72fbbeb4-15e7-4ab5-830e-325ddea00d02)
 
-5. 실행을 종료하고 Docker 환경을 초기화 하고 싶은 경우:
+4. 실행을 종료하고 Docker 환경을 초기화 하고 싶은 경우:
 
    ```shell
    $ make clear

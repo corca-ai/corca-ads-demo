@@ -1,4 +1,4 @@
-package com.corca.ads.demo.ads.dto;
+package com.corca.ads.demo.corca.ads.dto;
 
 import com.corca.ads.demo.product.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

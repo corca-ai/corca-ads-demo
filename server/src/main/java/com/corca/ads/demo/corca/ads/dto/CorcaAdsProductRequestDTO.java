@@ -1,4 +1,4 @@
-package com.corca.ads.demo.ads.dto;
+package com.corca.ads.demo.corca.ads.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

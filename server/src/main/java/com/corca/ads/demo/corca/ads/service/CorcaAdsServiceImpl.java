@@ -1,8 +1,8 @@
-package com.corca.ads.demo.ads.service;
+package com.corca.ads.demo.corca.ads.service;
 
-import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
-import com.corca.ads.demo.ads.dto.CorcaAdsApiRequestDTO;
-import com.corca.ads.demo.common.exception.CorcaAdsApiException;
+import com.corca.ads.demo.corca.ads.dto.CorcaAdsProductResponseDTO;
+import com.corca.ads.demo.corca.ads.dto.CorcaAdsApiRequestDTO;
+import com.corca.ads.demo.common.exception.CorcaApiException;
 import com.corca.ads.demo.product.service.ProductService;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -91,7 +91,7 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
     } catch (Exception e) {
       log.error("Error fetching products from Corca Ads", e);
       e.printStackTrace();
-      throw new CorcaAdsApiException("Failed to fetch products from Corca Ads", e);
+      throw new CorcaApiException("Failed to fetch products from Corca Ads", e);
     }
   }
 

@@ -14,9 +14,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 상품 관련 API 요청을 처리하는 컨트롤러입니다.
@@ -58,9 +64,51 @@ public class ProductController {
    * @return 조회된 상품 목록
    */
   @GetMapping
+  @Operation(summary = "상품 목록", description = "상품 목록을 조회합니다.")
+  @ApiResponse(responseCode = "200", description = "Success",
+      content = @Content(schema = @Schema(implementation = Page.class)))
   public Page<ProductDTO> getProducts(@Parameter(description = "페이지 정보",
       schema = @Schema(implementation = Pageable.class)) @PageableDefault(
           size = 10) Pageable pageable) {
     return productService.getProducts(pageable);
+  }
+
+  @PostMapping
+  @Operation(summary = "상품 등록", description = "새로운 상품을 등록합니다. Corca Data API로도 전송됩니다.")
+  @ApiResponse(responseCode = "201", description = "Success")
+  public ProductDTO createProduct(@RequestBody ProductDTO product) {
+    return productService.createProduct(product);
+  }
+
+  @PostMapping("/bulk")
+  @Operation(summary = "상품 일괄 등록", description = "여러 상품을 한 번에 등록합니다. Corca Data API로도 전송됩니다.")
+  @ApiResponse(responseCode = "201", description = "Success")
+  public List<ProductDTO> createProducts(@RequestBody List<ProductDTO> products) {
+    return productService.createProducts(products);
+  }
+
+  @PutMapping("/{productId}")
+  @Operation(summary = "상품 수정", description = "기존 상품 정보를 수정합니다. Corca Data API로도 전송됩니다.")
+  @ApiResponse(responseCode = "200", description = "Success")
+  public ProductDTO updateProduct(@PathVariable String productId, @RequestBody ProductDTO product) {
+    return productService.updateProduct(productId, product);
+  }
+
+  @PutMapping("/bulk")
+  @Operation(summary = "상품 일괄 수정", description = "여러 상품 정보를 한 번에 수정합니다. Corca Data API로도 전송됩니다.")
+  public List<ProductDTO> updateProducts(@RequestBody List<ProductDTO> products) {
+    return productService.updateProducts(products);
+  }
+
+  @DeleteMapping("/{productId}")
+  @Operation(summary = "상품 삭제", description = "상품을 삭제 처리합니다. Corca Data API로도 전송됩니다.")
+  public void deleteProduct(@PathVariable String productId) {
+    productService.deleteProduct(productId);
+  }
+
+  @PostMapping("/{productId}/restore")
+  @Operation(summary = "상품 복구", description = "삭제된 상품을 복구합니다. Corca Data API로도 전송됩니다.")
+  public void restoreProduct(@PathVariable String productId) {
+    productService.restoreProduct(productId);
   }
 }
