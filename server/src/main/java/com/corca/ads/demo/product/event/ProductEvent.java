@@ -5,16 +5,21 @@ import lombok.Getter;
 
 import java.util.List;
 
+/*
+ * 스토어에서 관리 하는 상품 데이터에 변경이 있을 때 발생하는 이벤트입니다.
+ * 
+ * 데모 코드에서는 Corca Data API의 명세에 따라 단일 상품, 여러 상품, 상품 ID만을 사용하는 작업으로 구분하고 각 이벤트는 비동기로 처리되어 전송됩니다.
+ */
 @Getter
 public class ProductEvent {
   public enum EventType {
     // @formatter:off
-    PRODUCT_CREATED(EventCategory.SINGLE),
-    PRODUCT_UPDATED(EventCategory.SINGLE),
-    PRODUCT_DELETED(EventCategory.ID_ONLY),
-    PRODUCT_RESTORED(EventCategory.ID_ONLY),
-    PRODUCTS_BULK_CREATED(EventCategory.BULK),
-    PRODUCTS_BULK_UPDATED(EventCategory.BULK);
+    PRODUCT_CREATED(EventCategory.SINGLE),       // 단일 상품 생성
+    PRODUCT_UPDATED(EventCategory.SINGLE),       // 단일 상품 수정
+    PRODUCT_DELETED(EventCategory.ID_ONLY),      // 상품 삭제
+    PRODUCT_RESTORED(EventCategory.ID_ONLY),     // 상품 복구
+    PRODUCTS_BULK_CREATED(EventCategory.BULK),   // 상품 일괄 등록
+    PRODUCTS_BULK_UPDATED(EventCategory.BULK);   // 상품 일괄 수정
     // @formatter:on
 
     private final EventCategory category;

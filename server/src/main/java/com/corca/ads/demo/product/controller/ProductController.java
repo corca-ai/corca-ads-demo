@@ -24,12 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * 상품 관련 API 요청을 처리하는 컨트롤러입니다.
- * 
- * 📍 참고: 이 컨트롤러는 Corca Ads API와 직접적인 연관이 없으며, 데모 웹 사이트를 위해 간단히 구현되어 참고하지 않으셔도 무관합니다.
- * 
- * 📍 참고: 데모에서는 실제 DB 대신 더미 JSON 파일에서 상품 데이터를 조회합니다.
+/*
+ * 상품 관련 API 요청을 처리하는 컨트롤러입니다. 이 컨트롤러는 기존 상품을 가져오기 위한 엔드포인트를 제공합니다.
  */
 @RestController
 @Tag(name = "Product", description = "광고 상품이 아닌 기존의 상품을 조회하는 데 사용되는 API")
@@ -41,6 +37,12 @@ public class ProductController {
   public ProductController(ProductService productService) {
     this.productService = productService;
   }
+
+  /*
+   * 📍 참고: 아래 두개의 엔드포인트는 Corca Ads API와 직접적인 연관이 없으며, 데모 웹 사이트를 위해 간단히 구현되어 참고하지 않으셔도 무관합니다.
+   * 
+   * 📍 참고: 데모에서는 실제 DB 대신 더미 JSON 파일에서 상품 데이터를 조회합니다.
+   */
 
   /**
    * 상품 ID를 기반으로 상품 상세 정보를 조회합니다.
@@ -72,6 +74,12 @@ public class ProductController {
           size = 10) Pageable pageable) {
     return productService.getProducts(pageable);
   }
+
+  /*
+   * 📍 참고: 아래 여섯개의 엔드포인트는 Corca Data API의 연동 예시를 보여드리기 위해 작성된 코드입니다.
+   * 
+   * 📍 참고: 데모에서는 DB 사용과 비즈니스 로직을 포함하지 않습니다.
+   */
 
   @PostMapping
   @Operation(summary = "상품 등록", description = "새로운 상품을 등록합니다. Corca Data API로도 전송됩니다.")

@@ -21,41 +21,6 @@
     ],
   "paths":
     {
-      "/api/products":
-        {
-          "get":
-            {
-              "tags": ["Product"],
-              "operationId": "getProducts",
-              "parameters":
-                [
-                  {
-                    "name": "pageable",
-                    "in": "query",
-                    "description": "페이지 정보",
-                    "required": true,
-                    "schema": { "$ref": "#/components/schemas/Pageable" },
-                  },
-                ],
-              "responses":
-                {
-                  "200":
-                    {
-                      "description": "OK",
-                      "content":
-                        {
-                          "*/*":
-                            {
-                              "schema":
-                                {
-                                  "$ref": "#/components/schemas/PageProductDTO",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
       "/api/products/{productId}":
         {
           "get":
@@ -90,6 +55,245 @@
                     },
                 },
             },
+          "put":
+            {
+              "tags": ["Product"],
+              "summary": "상품 수정",
+              "description": "기존 상품 정보를 수정합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "updateProduct",
+              "parameters":
+                [
+                  {
+                    "name": "productId",
+                    "in": "path",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/ProductDTO" },
+                        },
+                    },
+                  "required": true,
+                },
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/ProductDTO" },
+                            },
+                        },
+                    },
+                },
+            },
+          "delete":
+            {
+              "tags": ["Product"],
+              "summary": "상품 삭제",
+              "description": "상품을 삭제 처리합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "deleteProduct",
+              "parameters":
+                [
+                  {
+                    "name": "productId",
+                    "in": "path",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses": { "200": { "description": "OK" } },
+            },
+        },
+      "/api/products/bulk":
+        {
+          "put":
+            {
+              "tags": ["Product"],
+              "summary": "상품 일괄 수정",
+              "description": "여러 상품 정보를 한 번에 수정합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "updateProducts",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            {
+                              "type": "array",
+                              "items":
+                                { "$ref": "#/components/schemas/ProductDTO" },
+                            },
+                        },
+                    },
+                  "required": true,
+                },
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "type": "array",
+                                  "items":
+                                    {
+                                      "$ref": "#/components/schemas/ProductDTO",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          "post":
+            {
+              "tags": ["Product"],
+              "summary": "상품 일괄 등록",
+              "description": "여러 상품을 한 번에 등록합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "createProducts",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            {
+                              "type": "array",
+                              "items":
+                                { "$ref": "#/components/schemas/ProductDTO" },
+                            },
+                        },
+                    },
+                  "required": true,
+                },
+              "responses":
+                {
+                  "201":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "type": "array",
+                                  "items":
+                                    {
+                                      "$ref": "#/components/schemas/ProductDTO",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/api/products":
+        {
+          "get":
+            {
+              "tags": ["Product"],
+              "summary": "상품 목록",
+              "description": "상품 목록을 조회합니다.",
+              "operationId": "getProducts",
+              "parameters":
+                [
+                  {
+                    "name": "pageable",
+                    "in": "query",
+                    "description": "페이지 정보",
+                    "required": true,
+                    "schema": { "$ref": "#/components/schemas/Pageable" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema": { "$ref": "#/components/schemas/Page" },
+                            },
+                        },
+                    },
+                },
+            },
+          "post":
+            {
+              "tags": ["Product"],
+              "summary": "상품 등록",
+              "description": "새로운 상품을 등록합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "createProduct",
+              "requestBody":
+                {
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            { "$ref": "#/components/schemas/ProductDTO" },
+                        },
+                    },
+                  "required": true,
+                },
+              "responses":
+                {
+                  "201":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/ProductDTO" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/api/products/{productId}/restore":
+        {
+          "post":
+            {
+              "tags": ["Product"],
+              "summary": "상품 복구",
+              "description": "삭제된 상품을 복구합니다. Corca Data API로도 전송됩니다.",
+              "operationId": "restoreProduct",
+              "parameters":
+                [
+                  {
+                    "name": "productId",
+                    "in": "path",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses": { "200": { "description": "OK" } },
+            },
         },
       "/api/corca-ads/products":
         {
@@ -107,7 +311,9 @@
                     "description": "Corca Ads 요청 파라미터",
                     "required": true,
                     "schema":
-                      { "$ref": "#/components/schemas/CorcaAdsRequestDTO" },
+                      {
+                        "$ref": "#/components/schemas/CorcaAdsProductRequestDTO",
+                      },
                   },
                 ],
               "responses":
@@ -134,53 +340,6 @@
     {
       "schemas":
         {
-          "Pageable":
-            {
-              "type": "object",
-              "properties":
-                {
-                  "page":
-                    { "minimum": 0, "type": "integer", "format": "int32" },
-                  "size":
-                    { "minimum": 1, "type": "integer", "format": "int32" },
-                  "sort": { "type": "array", "items": { "type": "string" } },
-                },
-            },
-          "PageProductDTO":
-            {
-              "type": "object",
-              "properties":
-                {
-                  "totalPages": { "type": "integer", "format": "int32" },
-                  "totalElements": { "type": "integer", "format": "int64" },
-                  "first": { "type": "boolean" },
-                  "last": { "type": "boolean" },
-                  "size": { "type": "integer", "format": "int32" },
-                  "content":
-                    {
-                      "type": "array",
-                      "items": { "$ref": "#/components/schemas/ProductDTO" },
-                    },
-                  "number": { "type": "integer", "format": "int32" },
-                  "sort": { "$ref": "#/components/schemas/SortObject" },
-                  "pageable": { "$ref": "#/components/schemas/PageableObject" },
-                  "numberOfElements": { "type": "integer", "format": "int32" },
-                  "empty": { "type": "boolean" },
-                },
-            },
-          "PageableObject":
-            {
-              "type": "object",
-              "properties":
-                {
-                  "offset": { "type": "integer", "format": "int64" },
-                  "sort": { "$ref": "#/components/schemas/SortObject" },
-                  "paged": { "type": "boolean" },
-                  "unpaged": { "type": "boolean" },
-                  "pageNumber": { "type": "integer", "format": "int32" },
-                  "pageSize": { "type": "integer", "format": "int32" },
-                },
-            },
           "ProductDTO":
             {
               "type": "object",
@@ -195,6 +354,49 @@
                 },
               "description": "보리보리 상품 DTO",
             },
+          "Pageable":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "page":
+                    { "minimum": 0, "type": "integer", "format": "int32" },
+                  "size":
+                    { "minimum": 1, "type": "integer", "format": "int32" },
+                  "sort": { "type": "array", "items": { "type": "string" } },
+                },
+            },
+          "Page":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "totalPages": { "type": "integer", "format": "int32" },
+                  "totalElements": { "type": "integer", "format": "int64" },
+                  "size": { "type": "integer", "format": "int32" },
+                  "content": { "type": "array", "items": { "type": "object" } },
+                  "number": { "type": "integer", "format": "int32" },
+                  "sort": { "$ref": "#/components/schemas/SortObject" },
+                  "pageable": { "$ref": "#/components/schemas/PageableObject" },
+                  "first": { "type": "boolean" },
+                  "last": { "type": "boolean" },
+                  "numberOfElements": { "type": "integer", "format": "int32" },
+                  "empty": { "type": "boolean" },
+                },
+            },
+          "PageableObject":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "offset": { "type": "integer", "format": "int64" },
+                  "sort": { "$ref": "#/components/schemas/SortObject" },
+                  "pageNumber": { "type": "integer", "format": "int32" },
+                  "pageSize": { "type": "integer", "format": "int32" },
+                  "paged": { "type": "boolean" },
+                  "unpaged": { "type": "boolean" },
+                },
+            },
           "SortObject":
             {
               "type": "object",
@@ -205,22 +407,12 @@
                   "unsorted": { "type": "boolean" },
                 },
             },
-          "CorcaAdsRequestDTO":
+          "CorcaAdsProductRequestDTO":
             {
-              "required": ["clientId", "deviceId", "placementId", "sessionId"],
+              "required": ["deviceId", "placementId", "sessionId"],
               "type": "object",
               "properties":
                 {
-                  "clientId":
-                    {
-                      "type": "string",
-                      "description": "Corca Ads 서비스의 클라이언트 ID",
-                    },
-                  "placementId":
-                    {
-                      "type": "string",
-                      "description": "Corca Ads 서비스에서 발급받은 광고가 나갈 지면(구좌) ID",
-                    },
                   "sessionId":
                     {
                       "type": "string",
@@ -229,20 +421,25 @@
                   "deviceId":
                     {
                       "type": "string",
-                      "description": "엔드 유저의 디바이스 고유 식별자",
+                      "description": "엔드유저의 디바이스 고유 식별자",
                     },
                   "customerId":
                     {
                       "type": "string",
-                      "description": "스토어에 로그인한 엔드유저를 식별하기 위한 값, 로그인 하지 않은 유저는 null로 설정",
+                      "description": "스토어에 로그인한 엔드유저를 식별하기 위한 값, 로그인 하지 않은 유저는 null로 설정 (optional)",
+                    },
+                  "placementId":
+                    {
+                      "type": "string",
+                      "description": "Corca Ads 서비스에서 발급받은 광고가 나갈 지면(구좌) ID",
                     },
                   "userAgent":
                     {
                       "type": "string",
-                      "description": "엔드유저의 User-Agent 정보",
+                      "description": "엔드유저의 User-Agent 정보 (optional)",
                     },
                 },
-              "description": "Corca Ads API 요청 DTO",
+              "description": "Corca Ads 상품 요청 DTO",
             },
           "CorcaAdsProductResponseDTO":
             {
@@ -252,7 +449,7 @@
                   "suggestions":
                     {
                       "type": "array",
-                      "description": "광고 제안 목록",
+                      "description": "광고 상품 목록",
                       "items": { "$ref": "#/components/schemas/SuggestionDTO" },
                     },
                   "placement": { "$ref": "#/components/schemas/PlacementDTO" },
@@ -272,28 +469,36 @@
                   "adsetId":
                     {
                       "type": "string",
-                      "description": "광고의 소재를 식별하기 위한 값",
+                      "description": "광고 요청으로 나간 상품의 식별자. 광고의 소재를 식별하기 위한 값",
                     },
                 },
-              "description": "광고 성과 추적 정보",
+              "description": "성과 식별자. 광고 제안에 대한 성과 추적을 위한 정보",
             },
           "PlacementDTO":
             {
               "type": "object",
               "properties":
                 {
-                  "id": { "type": "string", "description": "지면 ID" },
-                  "title": { "type": "string", "description": "지면 타이틀" },
+                  "id":
+                    {
+                      "type": "string",
+                      "description": "Corca Ads 어드민에서 생성한 지면의 ID",
+                    },
+                  "title":
+                    {
+                      "type": "string",
+                      "description": "지면을 구분하기 위한 이름",
+                    },
                   "displayCount":
                     {
                       "type": "integer",
-                      "description": "지면(구좌)에 제안 받을 광고 아이템의 개수",
+                      "description": "지면에 나갈 (광고) 상품의 개수. 이 숫자만큼 광고 상품이 반환됩니다.",
                       "format": "int32",
                     },
                   "activated":
                     { "type": "boolean", "description": "지면 활성화 여부" },
                 },
-              "description": "광고 지면 정보",
+              "description": "광고 지면(구좌) 정보",
             },
           "SuggestionDTO":
             {
@@ -304,7 +509,7 @@
                   "logOptions":
                     { "$ref": "#/components/schemas/LogOptionsDTO" },
                 },
-              "description": "광고 제안 정보",
+              "description": "제안된 광고 상품 정보",
             },
         },
     },

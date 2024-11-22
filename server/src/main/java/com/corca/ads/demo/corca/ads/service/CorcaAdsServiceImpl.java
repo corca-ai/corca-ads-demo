@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-/**
+/*
  * CorcaAdsService 인터페이스의 구현체입니다. 이 서비스는 광고 상품을 가져오기 위해 Corca Ads API와 상호 작용하는 역할을 담당합니다.
  */
 @Slf4j

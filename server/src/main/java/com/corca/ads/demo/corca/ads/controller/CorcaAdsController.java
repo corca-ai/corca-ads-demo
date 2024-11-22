@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-/**
+/*
  * Corca Ads 관련 API 요청을 처리하는 컨트롤러입니다. 이 컨트롤러는 광고 상품을 가져오기 위한 엔드포인트를 제공합니다.
  */
 @RestController

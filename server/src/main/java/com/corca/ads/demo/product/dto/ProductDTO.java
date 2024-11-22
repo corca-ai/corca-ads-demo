@@ -11,9 +11,8 @@ import lombok.Setter;
 public class ProductDTO {
   private String id;
 
-  /**
-   * !SECTION
-   * 데모 시연을 위한 예시 필드
+  /*
+   * !SECTION 데모 시연을 위한 예시 필드
    */
   private String name;
   private double price;

@@ -1,12 +1,17 @@
 package com.corca.ads.demo.product.event;
 
-import com.corca.ads.demo.corca.data.CorcaDataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import com.corca.ads.demo.corca.data.service.CorcaDataService;
 
+/*
+ * Corca Data API 연동을 위한 이벤트 리스너입니다.
+ *
+ * 상품 데이터 변경 시 발생하는 이벤트를 비동기로 처리하고, 이를 통해 스토어의 기존 상품 관리 로직과 Corca Data API 연동을 분리 할 수 있습니다.
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor
