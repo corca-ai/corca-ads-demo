@@ -1,6 +1,6 @@
-package com.corca.ads.demo.ads.service;
+package com.corca.ads.demo.corca.ads.service;
 
-import com.corca.ads.demo.ads.dto.CorcaAdsProductResponseDTO;
+import com.corca.ads.demo.corca.ads.dto.CorcaAdsProductResponseDTO;
 
 import java.util.concurrent.CompletableFuture;
 

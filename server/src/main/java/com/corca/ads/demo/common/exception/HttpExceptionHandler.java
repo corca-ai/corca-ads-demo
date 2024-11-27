@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class HttpExceptionHandler {
 
-  @ExceptionHandler(CorcaAdsApiException.class)
-  public ResponseEntity<ErrorResponse> handleCorcaAdsApiException(CorcaAdsApiException ex,
+  @ExceptionHandler(CorcaApiException.class)
+  public ResponseEntity<ErrorResponse> handleCorcaAdsApiException(CorcaApiException ex,
       WebRequest request) {
     ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
         "Corca Ads API Error", ex.getMessage(), request.getDescription(false), LocalDateTime.now());
