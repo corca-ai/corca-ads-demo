@@ -33,19 +33,15 @@ import java.util.concurrent.CompletableFuture;
 public class CorcaAdsServiceImpl implements CorcaAdsService {
 
   private final String corcaAdsApiUrl = "https://api.ads.corca.dev";
-  private final String corcaAdsClientId;
   private final RestTemplate restTemplate;
   private final ProductService productService;
   private final ObjectMapper objectMapper;
 
   /**
    * 지정된 매개변수로 새 CorcaAdsServiceImpl을 생성합니다.
-   *
-   * @param corcaAdsClientId Corca Ads 서비스의 클라이언트 ID
    */
-  public CorcaAdsServiceImpl(String corcaAdsClientId, RestTemplate restTemplate,
-      ProductService productService, ObjectMapper objectMapper) {
-    this.corcaAdsClientId = corcaAdsClientId;
+  public CorcaAdsServiceImpl(RestTemplate restTemplate, ProductService productService,
+      ObjectMapper objectMapper) {
     this.restTemplate = restTemplate;
     this.productService = productService;
     this.objectMapper = objectMapper;
@@ -70,8 +66,8 @@ public class CorcaAdsServiceImpl implements CorcaAdsService {
 
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    CorcaAdsApiRequestDTO request = CorcaAdsApiRequestDTO.create(corcaAdsClientId, placementId,
-        sessionId, deviceId, customerId, userAgent);
+    CorcaAdsApiRequestDTO request =
+        CorcaAdsApiRequestDTO.create(placementId, sessionId, deviceId, customerId, userAgent);
     HttpEntity<CorcaAdsApiRequestDTO> entity = new HttpEntity<>(request, headers);
     String url = corcaAdsApiUrl + "/v1/advertisements/products";
 

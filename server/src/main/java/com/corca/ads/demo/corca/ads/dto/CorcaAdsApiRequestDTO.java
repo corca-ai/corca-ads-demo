@@ -9,13 +9,9 @@ import lombok.Setter;
 @Setter
 @Schema(description = "Corca Ads API 요청 DTO")
 public class CorcaAdsApiRequestDTO extends BaseCorcaAdsRequestDTO {
-  @Schema(description = "Corca Ads 서비스의 클라이언트 ID", required = true)
-  private String clientId;
-
-  public static CorcaAdsApiRequestDTO create(String clientId, String placementId, String sessionId,
-      String deviceId, String customerId, String userAgent) {
+  public static CorcaAdsApiRequestDTO create(String placementId, String sessionId, String deviceId,
+      String customerId, String userAgent) {
     CorcaAdsApiRequestDTO request = new CorcaAdsApiRequestDTO();
-    request.setClientId(clientId);
     request.setPlacementId(placementId);
     request.setSessionId(sessionId);
     request.setDeviceId(deviceId);

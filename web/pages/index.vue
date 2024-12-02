@@ -14,7 +14,6 @@ const { data: adsProducts, pending: adsPending } = await useFetch(
     baseURL: "http://localhost:8080/api/",
     server: false,
     params: {
-      clientId: storeId,
       placementId: "0eae4a71-a99f-44db-8aea-4a8d7e06fc41",
       sessionId: sessionId,
       deviceId: deviceId,
