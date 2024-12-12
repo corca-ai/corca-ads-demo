@@ -4,11 +4,9 @@ WORKDIR /app
 
 RUN apk add --no-cache git
 
-RUN npm install -g yarn
-
 RUN yarn set version 1.22.22
 
-COPY ../web/ .
+COPY web/ .
 
 RUN yarn install
 
